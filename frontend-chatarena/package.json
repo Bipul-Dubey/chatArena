@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.5",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "^6.1.8"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
   }
 }
