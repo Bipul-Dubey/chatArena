@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Avatar, UnreadMessage } from "../common/common";
-import { faker } from "@faker-js/faker";
+import { Avatar, Container, UnreadMessage } from "../common/common";
 
 const StyledChatMainContainer = styled("div")(({}) => ({
   backgroundColor: "#D0ECFA",
@@ -13,18 +12,18 @@ const StyledChatMainContainer = styled("div")(({}) => ({
   justifyContent: "space-between",
 }));
 
-const Chat = () => {
+const Chat = ({ isactive = false }) => {
   return (
     <StyledChatMainContainer>
-      <div style={{ display: "flex", gap: 21, alignItems: "center" }}>
+      <Container row center style={{ gap: 17 }}>
         {/* Profile image */}
-        <Avatar size="2.8rem" />
+        <Avatar size="2.8rem" isactive={isactive} status />
         {/* name and last message */}
         <div>
-          <div>{faker.person.fullName()}</div>
-          <div>{faker.music.songName()}</div>
+          <div>{"ABCD"}</div>
+          <div>{"sefrgergre"}</div>
         </div>
-      </div>
+      </Container>
       {/* last message time and unread message */}
       <div
         style={{

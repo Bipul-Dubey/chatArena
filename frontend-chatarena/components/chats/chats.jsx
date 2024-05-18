@@ -8,18 +8,18 @@ import {
 import { BoxArrowDown, CircleDashed } from "@phosphor-icons/react";
 import { IconButton } from "../buttons";
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
-import { useState } from "react";
 import Chat from "./chat";
 
 const StyledMainChatContainer = styled("div")(({}) => ({
   backgroundColor: "#F8FAFF",
-  width: "350px",
+  minWidth: "350px",
   "@media (max-width: 768px)": {
     width: "100%",
   },
   display: "flex",
   flexDirection: "column",
-  maxHeight: "100vh",
+  height: "100vh",
+  minHeight: "500px",
 }));
 
 const StyledTopContainer = styled("div")(({}) => ({
@@ -38,7 +38,12 @@ const StyledChatContainer = styled("div")(
     alignItems: center ? "center" : "",
     overflowY: "scroll",
     "&::-webkit-scrollbar": {
-      width: "2px",
+      width: "0.5px",
+    },
+    "&:hover": {
+      "&::-webkit-scrollbar": {
+        width: "5px",
+      },
     },
   })
 );
@@ -80,8 +85,8 @@ const Chats = () => {
       >
         {"123hdnfdsnfansdmfasdfnmasdnfmasdsdfsdfnsdkfnsk"
           ?.split("")
-          ?.map((item) => (
-            <Chat />
+          ?.map((item, index) => (
+            <Chat isactive={index % 2 == 0} />
           ))}
       </StyledChatContainer>
     </StyledMainChatContainer>

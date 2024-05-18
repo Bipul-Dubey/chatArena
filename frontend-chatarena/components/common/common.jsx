@@ -30,29 +30,30 @@ export const StyledHorizontalLine = styled("hr")(
 );
 
 // ==================== Profile image ====================
-const StyledAvatarContainer = styled("div")(
-  ({ status = false, isactive = false, size = "" }) => ({
-    height: size,
+const StyledAvatarContainer = styled("div")(({ size = "" }) => ({
+  height: size,
+  width: size,
+  borderRadius: "50%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+
+  "&:hover": {
+    cursor: "pointer",
+  },
+}));
+
+const StyledAvatarImage = styled("img")(
+  ({ size = "50px", status = false, isactive = false }) => ({
     width: size,
+    height: size,
     borderRadius: "50%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    objectFit: "contain",
     border: `${status ? "2px" : "1px"} solid ${
       status ? (isactive ? "#09b412" : "#cb1515") : "#070707"
     }`,
-    "&:hover": {
-      cursor: "pointer",
-    },
   })
 );
-
-const StyledAvatarImage = styled("img")(({ size = "50px" }) => ({
-  width: size,
-  height: size,
-  borderRadius: "50%",
-  objectFit: "contain",
-}));
 
 export const Avatar = ({
   src,
@@ -63,20 +64,22 @@ export const Avatar = ({
   isactive = false,
 }) => {
   return (
-    <StyledAvatarContainer
-      size={size}
-      style={style}
-      onClick={onClick}
-      status={status}
-      isactive={isactive}
-    >
+    <StyledAvatarContainer size={size} style={style} onClick={onClick}>
       {src ? (
-        <StyledAvatarImage size={size} loading="lazy" src={src} />
+        <StyledAvatarImage
+          size={size}
+          loading="lazy"
+          src={src}
+          status={status}
+          isactive={isactive}
+        />
       ) : (
         <StyledAvatarImage
           size={size}
           loading="lazy"
           src={faker.image.avatar()}
+          status={status}
+          isactive={isactive}
         />
       )}
     </StyledAvatarContainer>

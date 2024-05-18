@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledLeftbarContainer = styled("div")(({}) => ({
   backgroundColor: "#F1F4FB",
-  width: "85px",
+  minWidth: "85px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -40,17 +40,45 @@ const StyledAlign = styled("div")(({ bottom = false }) => ({
   gap: bottom ? 9 : "",
 }));
 
-const Leftbar = () => {
+const Leftbar = ({ activeIndex = 0, setActiveIndex = () => {} }) => {
   return (
     <StyledLeftbarContainer>
       <StyledAlign>
         <StyledImage src="siteimage.png" />
         <StyledOptionContainer>
-          <IconButton size="45px" icon={<ChatCircleDots size={"30px"} />} />
-          <IconButton size="45px" icon={<Users size={"30px"} />} />
-          <IconButton size="45px" icon={<Phone size={"30px"} />} />
+          <IconButton
+            size="45px"
+            icon={<ChatCircleDots size={"30px"} />}
+            onClick={() => {
+              setActiveIndex(0);
+            }}
+            isactive={activeIndex == 0}
+          />
+          <IconButton
+            size="45px"
+            icon={<Users size={"30px"} />}
+            onClick={() => {
+              setActiveIndex(1);
+            }}
+            isactive={activeIndex == 1}
+          />
+          <IconButton
+            size="45px"
+            icon={<Phone size={"30px"} />}
+            onClick={() => {
+              setActiveIndex(2);
+            }}
+            isactive={activeIndex == 2}
+          />
           <StyledHorizontalLine />
-          <IconButton size="45px" icon={<Gear size={"30px"} />} />
+          <IconButton
+            size="45px"
+            icon={<Gear size={"30px"} />}
+            onClick={() => {
+              setActiveIndex(3);
+            }}
+            isactive={activeIndex == 3}
+          />
         </StyledOptionContainer>
       </StyledAlign>
       <StyledAlign bottom>
