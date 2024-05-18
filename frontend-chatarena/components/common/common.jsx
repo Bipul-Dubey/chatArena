@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { faker } from "@faker-js/faker/locale/af_ZA";
 import { IconButton } from "../buttons";
 
@@ -26,6 +26,14 @@ export const StyledHorizontalLine = styled("hr")(
     height: "0.1rem",
     backgroundColor: "gray",
     boxShadow: "0px 1px 1px 1px rgba(168, 168, 168, 0.5)",
+  })
+);
+
+export const StyledVerticalLine = styled("div")(
+  ({ width = "1px", height = "55px" }) => ({
+    width: width,
+    height: height,
+    backgroundColor: "gray",
   })
 );
 
@@ -133,20 +141,25 @@ const StyledTypography = styled("div")(
   })
 );
 
-export const Typography = ({ children, type = "", link = false }) => {
+export const Typography = ({
+  children,
+  type = "",
+  link = false,
+  style = {},
+}) => {
   return (
-    <StyledTypography type={type} link={link}>
+    <StyledTypography type={type} link={link} style={style}>
       {children}
     </StyledTypography>
   );
 };
 
 // ==================== Textfield ====================
-const StyledTextfieldContainer = styled("div")(({ isEndIcon = false }) => ({
+const StyledTextfieldContainer = styled("div")(({}) => ({
   position: "relative",
   display: "flex",
   alignItems: "center",
-  justifyContent: isEndIcon ? "flex-end" : "flex-start",
+  width: "100%",
 }));
 
 const StyledTextfield = styled("input")(
@@ -167,10 +180,20 @@ const StyledTextfield = styled("input")(
   })
 );
 
-const StyledIconContainer = styled("div")(({ iconEnd = false }) => ({
+const StyledStartIconContainer = styled("div")(({}) => ({
   position: "absolute",
-  padding: iconEnd ? "0px 7px 0px 0px" : "0px 0px 0px 7px",
-  borderRadius: "50%",
+  left: 10,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledEndIconContainer = styled("div")(({}) => ({
+  position: "absolute",
+  right: 10,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 
 export const TextField = ({
@@ -186,9 +209,9 @@ export const TextField = ({
       isEndIcon={iconEnd ? true : false}
     >
       {iconStart ? (
-        <StyledIconContainer isStartIcon={iconStart ? true : false}>
+        <StyledStartIconContainer>
           {<IconButton disabled icon={iconStart} noshadow />}
-        </StyledIconContainer>
+        </StyledStartIconContainer>
       ) : (
         ""
       )}
@@ -200,12 +223,48 @@ export const TextField = ({
         isEndIcon={iconEnd ? true : false}
       />
       {iconEnd ? (
-        <StyledIconContainer iconEnd={iconEnd ? true : false}>
+        <StyledEndIconContainer>
           {<IconButton disabled icon={iconEnd} noshadow />}
-        </StyledIconContainer>
+        </StyledEndIconContainer>
       ) : (
         ""
       )}
     </StyledTextfieldContainer>
+  );
+};
+
+// ==================== Marquee ====================
+const marquee = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+`;
+
+const MarqueeText = styled.div`
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: ${marquee} 10s linear infinite;
+  @media (min-width: 500px) {
+    animation: none;
+  }
+`;
+
+const MarqueeWrapper = styled.div`
+  overflow: hidden;
+  max-width: 75px;
+  @media (min-width: 500px) {
+    min-width: min-content;
+  }
+`;
+
+export const Marquee = ({ children }) => {
+  return (
+    <MarqueeWrapper>
+      <MarqueeText>{children}</MarqueeText>
+    </MarqueeWrapper>
   );
 };

@@ -6,19 +6,21 @@ const StyledIconButton = styled("div")(
     isactive = false,
     noshadow = false,
     disabled = false,
+    borderRadius = "50%",
+    backgroundColor = "",
   }) => ({
     cursor: disabled ? "" : "pointer",
     padding: 2,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "50%",
+    borderRadius: borderRadius,
     "&:hover": {
       backgroundColor: disabled ? "" : isactive ? "#40C7F1" : "#dcdee1",
     },
     height: size,
     width: size,
-    backgroundColor: isactive ? "#40C7F1" : "",
+    backgroundColor: isactive ? "#40C7F1" : backgroundColor,
     boxShadow: noshadow ? "" : "2px 2px 6px #d5d5d5, -2px -2px 6px #ebebeb",
   })
 );
@@ -30,6 +32,8 @@ export const IconButton = ({
   isactive = false,
   noshadow = false,
   disabled = false,
+  borderRadius = "50%",
+  backgroundColor = "",
 }) => {
   return (
     <StyledIconButton
@@ -38,6 +42,8 @@ export const IconButton = ({
       size={size}
       onClick={disabled ? () => {} : onClick}
       noshadow={noshadow}
+      borderRadius={borderRadius}
+      backgroundColor={backgroundColor}
     >
       {icon ? icon : "icon"}
     </StyledIconButton>

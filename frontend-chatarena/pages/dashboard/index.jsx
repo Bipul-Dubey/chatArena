@@ -1,7 +1,7 @@
 import Chats from "@/components/chats/chats";
 import ConversationArea from "@/components/conversationArea/conversationArea";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const StyledDashboardMainContainer = styled("div")(({}) => ({
@@ -11,7 +11,7 @@ const StyledDashboardMainContainer = styled("div")(({}) => ({
 }));
 
 const Dashboard = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   return (
     <StyledDashboardMainContainer>
