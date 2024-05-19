@@ -11,10 +11,10 @@ import { useState } from "react";
 
 const StyledFooterContainer = styled("div")(({}) => ({
   alignSelf: "flex-end",
-  height: "85px",
+  height: "75px",
   backgroundColor: "#eef0f5",
   width: "100%",
-  padding: "0px 20px",
+  padding: "10px 20px",
   display: "flex",
   alignItems: "center",
   gap: 10,
