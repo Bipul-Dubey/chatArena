@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Avatar, Container, UnreadMessage } from "../common/common";
+import { useRouter } from "next/router";
 
 const StyledChatMainContainer = styled("div")(({}) => ({
   backgroundColor: "#D0ECFA",
@@ -10,11 +11,23 @@ const StyledChatMainContainer = styled("div")(({}) => ({
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
+  "&:hover": {
+    cursor: "pointer",
+  },
 }));
 
-const Chat = ({ isactive = false }) => {
+const Chat = ({ user = {}, isactive = user?.isactive }) => {
+  const router = useRouter();
   return (
-    <StyledChatMainContainer>
+    <StyledChatMainContainer
+      onClick={() => {
+        const chat = Math.random(0.1, 1) * 1;
+        router.push({
+          pathname: "/dashboard",
+          query: { chat },
+        });
+      }}
+    >
       <Container row center style={{ gap: 17 }}>
         {/* Profile image */}
         <Avatar size="2.8rem" isactive={isactive} status />

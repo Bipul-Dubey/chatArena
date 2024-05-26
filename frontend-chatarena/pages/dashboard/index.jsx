@@ -1,7 +1,9 @@
 import Chats from "@/components/chats/chats";
 import ConversationArea from "@/components/conversationArea/conversationArea";
+import Noconversation from "@/components/conversationArea/noconversation";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledDashboardMainContainer = styled("div")(({}) => ({
@@ -11,13 +13,23 @@ const StyledDashboardMainContainer = styled("div")(({}) => ({
 }));
 
 const Dashboard = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [conversationId, setConversationId] = useState(null);
+
+  useEffect(() => {
+    if (router.query.chat) {
+      setConversationId(router.query.chat);
+    } else {
+      setConversationId(null);
+    }
+  }, [router]);
 
   return (
     <StyledDashboardMainContainer>
       <Leftbar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       {activeIndex == 0 ? <Chats /> : null}
-      <ConversationArea />
+      {conversationId ? <ConversationArea /> : <Noconversation />}
     </StyledDashboardMainContainer>
   );
 };

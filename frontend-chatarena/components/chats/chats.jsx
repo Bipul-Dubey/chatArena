@@ -48,7 +48,7 @@ const StyledChatContainer = styled("div")(
   })
 );
 
-const Chats = () => {
+const Chats = ({}) => {
   return (
     <StyledMainChatContainer>
       <StyledTopContainer>
@@ -86,7 +86,7 @@ const Chats = () => {
         {"123hdnfdsnfansdmfasdfnmasdnfmasdsdfsdfnsdkfnsk"
           ?.split("")
           ?.map((item, index) => (
-            <Chat isactive={index % 2 == 0} />
+            <Chat user={item} isactive={index % 2 == 0} />
           ))}
       </StyledChatContainer>
     </StyledMainChatContainer>
