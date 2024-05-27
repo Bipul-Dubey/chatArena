@@ -2,6 +2,15 @@ import styled from "styled-components";
 import { IconButton } from "../buttons";
 import { CaretDown } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
+import { Chat_History } from "@/constants/dummyData";
+import {
+  DocumentMessage,
+  ImageMessage,
+  LinkMessage,
+  ReplyMessage,
+  TextMesage,
+  TimeLine,
+} from "./messagesComponent";
 
 const StyledConversationContainer = styled("div")(({}) => ({
   minHeight: "350px",
@@ -12,6 +21,9 @@ const StyledConversationContainer = styled("div")(({}) => ({
   "&::-webkit-scrollbar": {
     width: "0.5px",
   },
+  display: "flex",
+  flexDirection: "column",
+  gap: 12,
 }));
 
 const ScrollDown = ({ scrollToBottom = () => {} }) => {
@@ -62,9 +74,29 @@ const Conversation = () => {
     <>
       {" "}
       {isButtonVisible ? <ScrollDown scrollToBottom={scrollToBottom} /> : null}
-      <StyledConversationContainer
-        ref={parentRef}
-      ></StyledConversationContainer>
+      <StyledConversationContainer ref={parentRef}>
+        {Chat_History?.map((el) => {
+          switch (el.type) {
+            case "divider":
+              return <TimeLine divider={el} />;
+            case "msg":
+              switch (el.subtype) {
+                case "img":
+                  return <ImageMessage chat={el} />;
+                case "doc":
+                  return <DocumentMessage chat={el} />;
+                case "link":
+                  return <LinkMessage chat={el} />;
+                case "reply":
+                  return <ReplyMessage chat={el} />;
+                default:
+                  return <TextMesage chat={el} />;
+              }
+            default:
+              return <>Error</>;
+          }
+        })}
+      </StyledConversationContainer>
     </>
   );
 };

@@ -146,9 +146,10 @@ export const Typography = ({
   type = "",
   link = false,
   style = {},
+  color = "",
 }) => {
   return (
-    <StyledTypography type={type} link={link} style={style}>
+    <StyledTypography type={type} link={link} style={style} color={color}>
       {children}
     </StyledTypography>
   );
