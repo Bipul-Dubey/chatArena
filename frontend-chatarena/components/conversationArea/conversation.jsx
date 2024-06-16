@@ -26,7 +26,7 @@ const StyledConversationContainer = styled("div")(({}) => ({
   gap: 12,
 }));
 
-const ScrollDown = ({ scrollToBottom = () => {} }) => {
+export const ScrollDown = ({ scrollToBottom = () => {} }) => {
   return (
     <div style={{ position: "absolute", zIndex: 1000, bottom: 100, right: 10 }}>
       <IconButton
@@ -48,7 +48,9 @@ const Conversation = () => {
   const checkScroll = () => {
     if (parentRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = parentRef.current;
-      setIsButtonVisible(Math.ceil(scrollTop + clientHeight) < scrollHeight);
+      setIsButtonVisible(
+        Math.ceil(scrollTop + clientHeight) < scrollHeight - 100
+      );
     }
   };
 

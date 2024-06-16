@@ -44,7 +44,7 @@ const Leftbar = ({ activeIndex = 0, setActiveIndex = () => {} }) => {
   return (
     <StyledLeftbarContainer>
       <StyledAlign>
-        <StyledImage src="siteimage.png" />
+        <StyledImage width={"50px"} height={"50%"} src="siteimage.png" />
         <StyledOptionContainer>
           <IconButton
             size="45px"

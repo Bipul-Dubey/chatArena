@@ -2,6 +2,8 @@ import Chats from "@/components/chats/chats";
 import ConversationArea from "@/components/conversationArea/conversationArea";
 import Noconversation from "@/components/conversationArea/noconversation";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
+import ProfileOverview from "@/components/profiles/profileOverview";
+import { useSelector } from "@/store/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -30,6 +32,7 @@ const Dashboard = () => {
       <Leftbar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       {activeIndex == 0 ? <Chats /> : null}
       {conversationId ? <ConversationArea /> : <Noconversation />}
+      <ProfileOverview />
     </StyledDashboardMainContainer>
   );
 };

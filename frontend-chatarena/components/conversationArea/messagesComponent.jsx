@@ -35,6 +35,7 @@ const StyledMessageBox = styled("div")(({ isIncoming }) => ({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
+  order: 2,
 }));
 
 export const TextMesage = ({ chat }) => {
@@ -44,7 +45,7 @@ export const TextMesage = ({ chat }) => {
         <Typography>{chat?.message}</Typography>
         <MessageTime time={chat?.time} />
       </StyledMessageBox>
-      <MessageOptions />
+      <MessageOptions isIncoming={chat.incoming} />
     </StyledMessageContainer>
   );
 };
@@ -87,7 +88,7 @@ export const ImageMessage = ({ chat }) => {
           <MessageTime time={chat.time} />
         </div>
       </StyledMessageBox>
-      <MessageOptions />
+      <MessageOptions isIncoming={chat.incoming} />
     </StyledMessageContainer>
   );
 };
@@ -115,7 +116,7 @@ export const ReplyMessage = ({ chat }) => {
         </div>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions />
+      <MessageOptions isIncoming={chat.incoming} />
     </StyledMessageContainer>
   );
 };
@@ -153,7 +154,7 @@ export const LinkMessage = ({ chat }) => {
         </StyledLinkContainer>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions />
+      <MessageOptions isIncoming={chat.incoming} />
     </StyledMessageContainer>
   );
 };
@@ -194,12 +195,12 @@ export const DocumentMessage = ({ chat }) => {
         <Typography>{chat.message}</Typography>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions />
+      <MessageOptions isIncoming={chat.incoming} />
     </StyledMessageContainer>
   );
 };
 
-const MessageOptions = () => {
+const MessageOptions = ({ isIncoming = false }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -210,7 +211,7 @@ const MessageOptions = () => {
   };
 
   return (
-    <>
+    <div style={{ order: isIncoming ? 3 : 1 }}>
       <DotsThreeVertical
         size={20}
         style={{ cursor: "pointer" }}
@@ -235,6 +236,6 @@ const MessageOptions = () => {
           ))}
         </Stack>
       </Menu> */}
-    </>
+    </div>
   );
 };

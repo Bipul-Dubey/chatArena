@@ -12,6 +12,7 @@ import {
   VideoCamera,
 } from "@phosphor-icons/react";
 import { IconButton } from "../buttons";
+import { handleToggleSidebar } from "@/store/services/app";
 
 const StyledHeaderContainer = styled("div")(({}) => ({
   height: "70px",
@@ -28,7 +29,11 @@ const Header = ({}) => {
     <StyledHeaderContainer>
       {/* profile area */}
       <div style={{ display: "flex", alignItems: "center", gap: 17 }}>
-        <Avatar />
+        <Avatar
+          onClick={() => {
+            handleToggleSidebar();
+          }}
+        />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Typography type="h5">
             <Marquee>Pink Panda Animal</Marquee>

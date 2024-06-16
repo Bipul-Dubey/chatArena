@@ -121,7 +121,7 @@ export const UnreadMessage = ({
 
 // ==================== Text area ====================
 const StyledTypography = styled("div")(
-  ({ type = "", link = false, color = "" }) => ({
+  ({ type = "", link = false, color = "", bold }) => ({
     fontSize:
       type == "h1"
         ? "2.125rem"
@@ -138,6 +138,7 @@ const StyledTypography = styled("div")(
         : "",
     color: link ? "#1c60f4" : color,
     cursor: link ? "pointer" : "default",
+    fontWeight: bold ? "bold" : "",
   })
 );
 
@@ -147,9 +148,16 @@ export const Typography = ({
   link = false,
   style = {},
   color = "",
+  bold = false,
 }) => {
   return (
-    <StyledTypography type={type} link={link} style={style} color={color}>
+    <StyledTypography
+      type={type}
+      link={link}
+      style={style}
+      color={color}
+      bold={bold}
+    >
       {children}
     </StyledTypography>
   );
