@@ -8,7 +8,7 @@ import {
   ImageMessage,
   LinkMessage,
   ReplyMessage,
-  TextMesage,
+  TextMessage,
   TimeLine,
 } from "./messagesComponent";
 
@@ -41,7 +41,7 @@ export const ScrollDown = ({ scrollToBottom = () => {} }) => {
   );
 };
 
-const Conversation = () => {
+const Conversation = ({ isMenu = true }) => {
   const parentRef = useRef();
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
@@ -75,24 +75,24 @@ const Conversation = () => {
   return (
     <>
       {" "}
-      {isButtonVisible ? <ScrollDown scrollToBottom={scrollToBottom} /> : null}
+      {/* {isButtonVisible ? <ScrollDown scrollToBottom={scrollToBottom} /> : null} */}
       <StyledConversationContainer ref={parentRef}>
         {Chat_History?.map((el) => {
           switch (el.type) {
             case "divider":
-              return <TimeLine divider={el} />;
+              return <TimeLine divider={el} isMenu={isMenu} />;
             case "msg":
               switch (el.subtype) {
                 case "img":
-                  return <ImageMessage chat={el} />;
+                  return <ImageMessage chat={el} isMenu={isMenu} />;
                 case "doc":
-                  return <DocumentMessage chat={el} />;
+                  return <DocumentMessage chat={el} isMenu={isMenu} />;
                 case "link":
-                  return <LinkMessage chat={el} />;
+                  return <LinkMessage chat={el} isMenu={isMenu} />;
                 case "reply":
-                  return <ReplyMessage chat={el} />;
+                  return <ReplyMessage chat={el} isMenu={isMenu} />;
                 default:
-                  return <TextMesage chat={el} />;
+                  return <TextMessage chat={el} isMenu={isMenu} />;
               }
             default:
               return <>Error</>;

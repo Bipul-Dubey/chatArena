@@ -38,14 +38,14 @@ const StyledMessageBox = styled("div")(({ isIncoming }) => ({
   order: 2,
 }));
 
-export const TextMesage = ({ chat }) => {
+export const TextMessage = ({ chat, isMenu }) => {
   return (
     <StyledMessageContainer isIncoming={chat?.incoming}>
       <StyledMessageBox isIncoming={chat?.incoming}>
         <Typography>{chat?.message}</Typography>
         <MessageTime time={chat?.time} />
       </StyledMessageBox>
-      <MessageOptions isIncoming={chat.incoming} />
+      <MessageOptions isIncoming={chat.incoming} isMenu={isMenu} />
     </StyledMessageContainer>
   );
 };
@@ -69,7 +69,7 @@ export const TimeLine = ({ divider }) => {
 };
 
 // image message
-export const ImageMessage = ({ chat }) => {
+export const ImageMessage = ({ chat, isMenu }) => {
   return (
     <StyledMessageContainer isIncoming={chat?.incoming}>
       <StyledMessageBox isIncoming={chat?.incoming}>
@@ -88,7 +88,7 @@ export const ImageMessage = ({ chat }) => {
           <MessageTime time={chat.time} />
         </div>
       </StyledMessageBox>
-      <MessageOptions isIncoming={chat.incoming} />
+      <MessageOptions isIncoming={chat.incoming} isMenu={isMenu} />
     </StyledMessageContainer>
   );
 };
@@ -102,7 +102,7 @@ const StyledReplyMessageContainer = styled("div")(({}) => ({
   padding: 4,
 }));
 
-export const ReplyMessage = ({ chat }) => {
+export const ReplyMessage = ({ chat, isMenu }) => {
   return (
     <StyledMessageContainer isIncoming={chat?.incoming}>
       <StyledMessageBox isIncoming={chat?.incoming}>
@@ -116,7 +116,7 @@ export const ReplyMessage = ({ chat }) => {
         </div>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions isIncoming={chat.incoming} />
+      <MessageOptions isIncoming={chat.incoming} isMenu={isMenu} />
     </StyledMessageContainer>
   );
 };
@@ -128,7 +128,7 @@ const StyledLinkContainer = styled("div")(({}) => ({
   flexDirection: "column",
 }));
 
-export const LinkMessage = ({ chat }) => {
+export const LinkMessage = ({ chat, isMenu }) => {
   return (
     <StyledMessageContainer isIncoming={chat.incoming}>
       <StyledMessageBox isIncoming={chat.incoming}>
@@ -154,7 +154,7 @@ export const LinkMessage = ({ chat }) => {
         </StyledLinkContainer>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions isIncoming={chat.incoming} />
+      <MessageOptions isIncoming={chat.incoming} isMenu={isMenu} />
     </StyledMessageContainer>
   );
 };
@@ -164,7 +164,7 @@ const StyledDocumentContainer = styled("div")(({ theme }) => ({
   borderRadius: 1,
 }));
 
-export const DocumentMessage = ({ chat }) => {
+export const DocumentMessage = ({ chat, isMenu }) => {
   return (
     <StyledMessageContainer isIncoming={chat.incoming}>
       <StyledMessageBox style={{ padding: 2 }} isIncoming={chat.incoming}>
@@ -195,12 +195,12 @@ export const DocumentMessage = ({ chat }) => {
         <Typography>{chat.message}</Typography>
         <MessageTime />
       </StyledMessageBox>
-      <MessageOptions isIncoming={chat.incoming} />
+      <MessageOptions isIncoming={chat.incoming} isMenu={isMenu} />
     </StyledMessageContainer>
   );
 };
 
-const MessageOptions = ({ isIncoming = false }) => {
+const MessageOptions = ({ isIncoming = false, isMenu = true }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -210,7 +210,7 @@ const MessageOptions = ({ isIncoming = false }) => {
     setAnchorEl(null);
   };
 
-  return (
+  return isMenu ? (
     <div style={{ order: isIncoming ? 3 : 1 }}>
       <DotsThreeVertical
         size={20}
@@ -237,5 +237,5 @@ const MessageOptions = ({ isIncoming = false }) => {
         </Stack>
       </Menu> */}
     </div>
-  );
+  ) : null;
 };

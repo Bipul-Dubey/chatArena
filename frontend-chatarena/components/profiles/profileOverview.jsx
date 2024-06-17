@@ -20,9 +20,12 @@ import {
 import { useSelector } from "@/store/store";
 import Tabs from "../common/tabs";
 import { useState } from "react";
+import { handleGetDocsLogo } from "@/utils/common";
+import Conversation from "../conversationArea/conversation";
 
 const StyledContainer = styled("div")(({}) => ({
   minWidth: "350px",
+  maxWidth: "350px",
   height: "calc(100vh - 70px)",
 }));
 
@@ -64,6 +67,8 @@ const ContactInfo = ({ infoType = "overview" }) => {
           ? "Contact Info"
           : infoType == "media"
           ? "Media, Docs, Links"
+          : infoType == "starred"
+          ? "Starred Message"
           : ""}
       </Typography>
     </StyledProfileHeader>
@@ -113,6 +118,8 @@ const ProfileOverview = ({}) => {
               return <OverViewInfo />;
             case "media":
               return <MediaLinkDocs />;
+            case "starred":
+              return <StarredSection />;
             default:
               return <>No Profile View</>;
           }
@@ -218,7 +225,13 @@ const OverViewInfo = ({}) => {
         </div>
         <div>
           {" "}
-          <IconButton icon={<CaretRight />} noshadow />{" "}
+          <IconButton
+            icon={<CaretRight />}
+            noshadow
+            onClick={() => {
+              handleUpdateToggleSidebar("starred");
+            }}
+          />{" "}
         </div>
       </StyledSection>
       <StyledHorizontalLine width="90%" />
@@ -361,18 +374,18 @@ const MediaLinkDocs = ({}) => {
                       downloadUrl: "",
                     },
                     {
-                      filename: "example.pdf",
+                      filename: "example.xml",
                       filetype: "pdf",
                       downloadUrl: "",
                     },
                     {
-                      filename: "example.pdf",
-                      filetype: "pdf",
+                      filename: "example.docx",
+                      filetype: "excel",
                       downloadUrl: "",
                     },
                     {
                       filename: "example.pdf",
-                      filetype: "pdf",
+                      filetype: "image",
                       downloadUrl: "",
                     },
                     {
@@ -693,7 +706,11 @@ const LinkSection = ({ urlName = "", url = "" }) => {
           <Paperclip size={35} />
         </div>
         <div>
-          <Typography link>{url}</Typography>
+          <Typography link>
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {url}
+            </a>
+          </Typography>
           <Typography type="p">{urlName}</Typography>
         </div>
       </div>
@@ -749,8 +766,15 @@ const DocSection = ({ filename = "", filetype = "", downloadUrl = "" }) => {
             alignItems: "center",
           }}
         >
-          <div style={{ display: "flex", gap: 17 }}>
-            <div>ImgLogo</div>
+          <div style={{ display: "flex", gap: 17, alignItems: "center" }}>
+            <div>
+              <img
+                src={handleGetDocsLogo(filetype)}
+                alt=""
+                height={"30px"}
+                width={"30px"}
+              />
+            </div>
             <Typography>
               {filename.length > 20
                 ? filename.slice(0, 10) + "..." + filename.slice(-5)
@@ -765,5 +789,8 @@ const DocSection = ({ filename = "", filetype = "", downloadUrl = "" }) => {
 };
 
 // ============ Starred ===============
+const StarredSection = ({}) => {
+  return <Conversation isMenu={false} />;
+};
 
 export default ProfileOverview;

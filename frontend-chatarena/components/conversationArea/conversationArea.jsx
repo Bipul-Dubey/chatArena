@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "./header";
-import Conversation, { ScrollDown } from "./conversation";
+import Conversation from "./conversation";
 import Footer from "./footer";
 
 const StyledMainConversationAreaBox = styled("section")(({}) => ({
