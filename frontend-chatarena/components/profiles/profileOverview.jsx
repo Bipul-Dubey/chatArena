@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IconButton } from "../buttons";
+import { CheckboxButton, IconButton } from "../buttons";
 import {
   ArrowLineDown,
   BellRinging,
@@ -131,6 +131,7 @@ const ProfileOverview = ({}) => {
 
 // ============ Profile Overview ===============
 const OverViewInfo = ({}) => {
+  const [muteNotification, setMuteNotification] = useState(false);
   return (
     <div
       style={{
@@ -242,10 +243,23 @@ const OverViewInfo = ({}) => {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            alignItems: "center",
+          }}
+        >
           <BellRinging /> <Typography>Mute Notification</Typography>
         </div>
-        <div></div>
+        <div>
+          <CheckboxButton
+            checked={muteNotification}
+            onClick={() => {
+              setMuteNotification((prevState) => !prevState);
+            }}
+          />
+        </div>
       </StyledSection>
       <StyledHorizontalLine width="90%" />
       <div></div>

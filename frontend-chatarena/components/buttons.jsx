@@ -49,3 +49,17 @@ export const IconButton = ({
     </StyledIconButton>
   );
 };
+
+// Checkbox button
+const StyledCheckbox = styled.input.attrs({ type: "checkbox" })(({}) => ({
+  width: "20px",
+  height: "20px",
+  cursor: "pointer",
+  "&:checked": {
+    backgroundColor: "#4caf50",
+  },
+}));
+
+export const CheckboxButton = ({ onClick = () => {}, checked = false }) => {
+  return <StyledCheckbox type="checkbox" checked={checked} onClick={onClick} />;
+};
