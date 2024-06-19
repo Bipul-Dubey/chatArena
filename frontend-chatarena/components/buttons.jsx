@@ -61,5 +61,5 @@ const StyledCheckbox = styled.input.attrs({ type: "checkbox" })(({}) => ({
 }));
 
 export const CheckboxButton = ({ onClick = () => {}, checked = false }) => {
-  return <StyledCheckbox type="checkbox" checked={checked} onClick={onClick} />;
+  return <StyledCheckbox checked={checked} onClick={onClick} />;
 };
