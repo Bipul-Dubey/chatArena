@@ -1,12 +1,14 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { StyledHorizontalLine, Typography } from "../common/common";
 import {
+  ArrowBendUpLeft,
   DotsThreeVertical,
   DownloadSimple,
   Images,
+  KeyReturn,
 } from "@phosphor-icons/react";
 import { IconButton } from "../buttons";
+import { Options } from "../common/menuOptions";
 
 // =========== Message Time ============
 const MessageTime = ({ time = "00:00" }) => {
@@ -29,6 +31,7 @@ const StyledMessageContainer = styled("div")(({ isIncoming }) => ({
 const StyledMessageBox = styled("div")(({ isIncoming }) => ({
   borderRadius: 7,
   maxWidth: "80%",
+  minWidth: "min-content",
   backgroundColor: isIncoming ? "#D0ECFA" : "#e0f0f0",
   padding: 5,
   display: "flex",
@@ -201,41 +204,29 @@ export const DocumentMessage = ({ chat, isMenu }) => {
 };
 
 const MessageOptions = ({ isIncoming = false, isMenu = true }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const options = [
+    {
+      name: (
+        <div style={{ gap: 12, display: "flex", alignItems: "center" }}>
+          <ArrowBendUpLeft />
+          <Typography type="h5">Reply</Typography>
+        </div>
+      ),
+      func: () => {
+        return true;
+      },
+    },
+  ];
 
   return isMenu ? (
     <div style={{ order: isIncoming ? 3 : 1 }}>
-      <DotsThreeVertical
-        size={20}
-        style={{ cursor: "pointer" }}
-        id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
-      ></DotsThreeVertical>
-      {/* <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <Stack spacing={1} px={1}>
-          {MessageOptionList?.map((opt) => (
-            <MenuItem>{opt.title}</MenuItem>
-          ))}
-        </Stack>
-      </Menu> */}
+      <Options options={options} position={isIncoming ? "left" : "right"}>
+        <DotsThreeVertical
+          size={20}
+          style={{ cursor: "pointer" }}
+          id="basic-button"
+        />
+      </Options>
     </div>
   ) : null;
 };

@@ -59,6 +59,12 @@ export const Chat_History = [
   },
   {
     type: "msg",
+    message: "Yes",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "msg",
     subtype: "link",
     preview: faker.image.cats(),
     message: "Yep, I can also do that",

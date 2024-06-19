@@ -1,6 +1,17 @@
 import { IconButton } from "@/components/buttons";
-import { Avatar, StyledHorizontalLine } from "@/components/common/common";
-import { ChatCircleDots, Gear, Phone, Users } from "@phosphor-icons/react";
+import {
+  Avatar,
+  StyledHorizontalLine,
+  Typography,
+} from "@/components/common/common";
+import { Options } from "@/components/common/menuOptions";
+import {
+  ChatCircleDots,
+  Gear,
+  Phone,
+  SignOut,
+  Users,
+} from "@phosphor-icons/react";
 import styled from "styled-components";
 
 const StyledLeftbarContainer = styled("div")(({}) => ({
@@ -82,7 +93,22 @@ const Leftbar = ({ activeIndex = 0, setActiveIndex = () => {} }) => {
         </StyledOptionContainer>
       </StyledAlign>
       <StyledAlign bottom>
-        <Avatar />
+        <Options
+          options={[
+            {
+              name: (
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <Typography type="h5">Logout</Typography>
+                  <SignOut size={25} />
+                </div>
+              ),
+              func: () => {},
+            },
+          ]}
+          position="top"
+        >
+          <Avatar />
+        </Options>
       </StyledAlign>
     </StyledLeftbarContainer>
   );
