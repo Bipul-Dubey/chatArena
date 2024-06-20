@@ -1,20 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Avatar, Container, UnreadMessage } from "../common/common";
 import { useRouter } from "next/router";
-
-const StyledChatMainContainer = styled("div")(({}) => ({
-  backgroundColor: "#D0ECFA",
-  padding: "10px 10px",
-  minHeight: "max-content",
-  borderRadius: 9,
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  "&:hover": {
-    cursor: "pointer",
-  },
-}));
+import { StyledChatMainContainer } from "./chat.common";
 
 const Chat = ({ user = {}, isactive = user?.isactive }) => {
   const router = useRouter();

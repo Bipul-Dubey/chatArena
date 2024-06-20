@@ -1,3 +1,5 @@
+import AllContacts from "@/components/chats/allContacts";
+import CallLogs from "@/components/chats/callLogs";
 import Chats from "@/components/chats/chats";
 import ConversationArea from "@/components/conversationArea/conversationArea";
 import Noconversation from "@/components/conversationArea/noconversation";
@@ -31,6 +33,8 @@ const Dashboard = () => {
     <StyledDashboardMainContainer>
       <Leftbar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
       {activeIndex == 0 ? <Chats /> : null}
+      {activeIndex == 1 ? <AllContacts /> : null}
+      {activeIndex == 2 ? <CallLogs /> : null}
       {conversationId ? <ConversationArea /> : <Noconversation />}
       <ProfileOverview />
     </StyledDashboardMainContainer>

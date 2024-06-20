@@ -1,25 +1,19 @@
-import styled from "styled-components";
-import {
-  Container,
-  StyledHorizontalLine,
-  TextField,
-  Typography,
-} from "../common/common";
-import { BoxArrowDown, CircleDashed } from "@phosphor-icons/react";
-import { IconButton } from "../buttons";
-import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
-import Chat from "./chat";
+import React from "react";
 import {
   StyledChatContainer,
   StyledMainChatContainer,
   StyledTopContainer,
 } from "./chat.common";
+import { Container, TextField, Typography } from "../common/common";
+import { IconButton } from "../buttons";
+import { CircleDashed, MagnifyingGlass } from "@phosphor-icons/react";
+import Chat from "./chat";
 
-const Chats = ({}) => {
+const AllContacts = () => {
   return (
     <StyledMainChatContainer>
       <StyledTopContainer>
-        <Typography type="h2">Chats</Typography>
+        <Typography type="h2">Contacts</Typography>
         <IconButton noshadow icon={<CircleDashed size={24} />} />
       </StyledTopContainer>
       <Container style={{ margin: "0px 7px" }}>
@@ -27,22 +21,6 @@ const Chats = ({}) => {
           iconStart={<MagnifyingGlass size={24} />}
           placeholder="Search"
         />
-      </Container>
-      <Container
-        row
-        style={{
-          margin: "20px 7px",
-          alignItems: "center",
-          gap: 27,
-        }}
-      >
-        <BoxArrowDown size={20} />{" "}
-        <Typography type="h5" link>
-          Archived
-        </Typography>
-      </Container>
-      <Container center>
-        <StyledHorizontalLine width="90%" />
       </Container>
       <StyledChatContainer
         style={{
@@ -60,4 +38,4 @@ const Chats = ({}) => {
   );
 };
 
-export default Chats;
+export default AllContacts;
