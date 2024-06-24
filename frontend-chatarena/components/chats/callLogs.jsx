@@ -1,14 +1,11 @@
 import React from "react";
 import {
   StyledChatContainer,
-  StyledChatMainContainer,
   StyledMainChatContainer,
   StyledTopContainer,
 } from "./chat.common";
 import { Container, TextField, Typography } from "../common/common";
-import { IconButton } from "../buttons";
-import { CircleDashed, MagnifyingGlass } from "@phosphor-icons/react";
-import Chat from "./chat";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 import Call from "./call";
 
 const CallLogs = ({}) => {

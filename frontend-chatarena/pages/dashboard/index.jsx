@@ -5,6 +5,7 @@ import ConversationArea from "@/components/conversationArea/conversationArea";
 import Noconversation from "@/components/conversationArea/noconversation";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
 import ProfileOverview from "@/components/profiles/profileOverview";
+import Setting from "@/components/settings/Setting";
 import { useSelector } from "@/store/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -35,6 +36,7 @@ const Dashboard = () => {
       {activeIndex == 0 ? <Chats /> : null}
       {activeIndex == 1 ? <AllContacts /> : null}
       {activeIndex == 2 ? <CallLogs /> : null}
+      {activeIndex == 3 ? <Setting /> : null}
       {conversationId ? <ConversationArea /> : <Noconversation />}
       <ProfileOverview />
     </StyledDashboardMainContainer>
