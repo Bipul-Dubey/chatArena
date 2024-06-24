@@ -3,7 +3,12 @@ import {
   StyledMainChatContainer,
   StyledTopContainer,
 } from "../chats/chat.common";
-import { Avatar, Container, Typography } from "../common/common";
+import {
+  Avatar,
+  Container,
+  StyledHorizontalLine,
+  Typography,
+} from "../common/common";
 import {
   Article,
   BellSimple,
@@ -17,51 +22,54 @@ import {
 } from "@phosphor-icons/react";
 
 function Setting() {
+  const iconSize = 20;
   const settingOptions = [
     {
       name: "Notifications",
-      icon: <BellSimple />,
+      icon: <BellSimple size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Privacy",
-      icon: <Lock />,
+      icon: <Lock size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "security",
-      icon: <Key />,
+      icon: <Key size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Theme",
-      icon: <PencilCircle />,
+      icon: <PencilCircle size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Chat Wallpaper",
-      icon: <Image />,
+      icon: <Image size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Request Account Info",
-      icon: <ClipboardText />,
+      icon: <ClipboardText size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Keyboard Shortcuts",
-      icon: <Article />,
+      icon: <Article size={iconSize} />,
       onClick: () => {},
     },
     {
       name: "Help",
-      icon: <WarningCircle />,
+      icon: <WarningCircle size={iconSize} s />,
       onClick: () => {},
     },
   ];
 
   return (
-    <StyledMainChatContainer style={{ gap: 25 }}>
+    <StyledMainChatContainer
+      style={{ gap: 25, maxHeight: "fit-content", overflowY: "scroll" }}
+    >
       <StyledTopContainer>
         <Typography
           type="h2"
@@ -91,16 +99,33 @@ function Setting() {
       <Container>
         {settingOptions?.map((option, index) => (
           <div
-            key={index}
             style={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
             }}
           >
-            {option.icon}
-            <Typography type="h5" onClick={option.onClick}>
+            <Typography
+              type="h5"
+              onClick={option.onClick}
+              key={index}
+              style={{
+                padding: "20px 20px",
+                display: "flex",
+                alignItems: "center",
+                gap: 20,
+                cursor: "pointer",
+                width: "100%",
+                textTransform: "capitalize",
+              }}
+              color="#535252"
+            >
+              {option.icon}
               {option.name}
             </Typography>
+            {settingOptions?.length - 1 != index ? (
+              <StyledHorizontalLine width={"90%"} />
+            ) : null}
           </div>
         ))}
       </Container>
