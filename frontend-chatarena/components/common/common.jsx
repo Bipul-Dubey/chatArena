@@ -21,11 +21,12 @@ export const Container = ({ children, row, style, center }) => {
 
 // ==================== line ====================
 export const StyledHorizontalLine = styled("hr")(
-  ({ width = "100%", center = false }) => ({
+  ({ width = "100%", center = false, padding = "" }) => ({
     width: width,
     height: "0.1rem",
     backgroundColor: "gray",
     boxShadow: "0px 1px 1px 1px rgba(168, 168, 168, 0.5)",
+    padding: padding,
   })
 );
 

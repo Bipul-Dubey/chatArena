@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  StyledMainChatContainer,
-  StyledTopContainer,
-} from "../chats/chat.common";
+import { StyledMainChatContainer } from "../chats/chat.common";
 import {
   Avatar,
   Container,
@@ -20,6 +17,7 @@ import {
   PencilCircle,
   WarningCircle,
 } from "@phosphor-icons/react";
+import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 
 function Setting() {
   const iconSize = 20;
@@ -70,16 +68,7 @@ function Setting() {
     <StyledMainChatContainer
       style={{ gap: 25, maxHeight: "fit-content", overflowY: "scroll" }}
     >
-      <StyledTopContainer>
-        <Typography
-          type="h2"
-          bold
-          style={{ display: "flex", gap: 10, alignItems: "center" }}
-        >
-          <Gear />
-          Settings
-        </Typography>
-      </StyledTopContainer>
+      <OpenLefBarHeader name="Settings" icon={<Gear />} />
       <Container
         style={{
           margin: "0px 7px",

@@ -45,21 +45,27 @@ export const IconButton = ({
       borderRadius={borderRadius}
       backgroundColor={backgroundColor}
     >
-      {icon ? icon : "icon"}
+      {icon ? icon : ""}
     </StyledIconButton>
   );
 };
 
 // Checkbox button
-const StyledCheckbox = styled.input.attrs({ type: "checkbox" })(({}) => ({
-  width: "20px",
-  height: "20px",
-  cursor: "pointer",
-  "&:checked": {
-    backgroundColor: "#4caf50",
-  },
-}));
+const StyledCheckbox = styled.input.attrs({ type: "checkbox" })(
+  ({ small = false, size = "20px" }) => ({
+    width: small ? "15px" : size,
+    height: small ? "15px" : size,
+    cursor: "pointer",
+    "&:checked": {
+      backgroundColor: "#4caf50",
+    },
+  })
+);
 
-export const CheckboxButton = ({ onClick = () => {}, checked = false }) => {
-  return <StyledCheckbox checked={checked} onClick={onClick} />;
+export const CheckboxButton = ({
+  onClick = () => {},
+  checked = false,
+  small = false,
+}) => {
+  return <StyledCheckbox checked={checked} onClick={onClick} small={small} />;
 };
