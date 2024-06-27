@@ -18,6 +18,8 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
+import { handleUpdateLeftBarSubType } from "@/store/services/app";
+import { LEFT_BAR } from "@/constants/appConstant";
 
 function Setting() {
   const iconSize = 20;
@@ -25,42 +27,62 @@ function Setting() {
     {
       name: "Notifications",
       icon: <BellSimple size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.Notification);
+      },
     },
     {
       name: "Privacy",
       icon: <Lock size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.PRIVACY);
+      },
     },
     {
       name: "security",
       icon: <Key size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.SECURITY);
+      },
     },
     {
       name: "Theme",
       icon: <PencilCircle size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.THEME);
+      },
     },
     {
       name: "Chat Wallpaper",
       icon: <Image size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.CHAT_WALLPAPER);
+      },
     },
     {
       name: "Request Account Info",
       icon: <ClipboardText size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(
+          LEFT_BAR.SETTING_SUB_TYPE.REQUEST_ACCOUNT_INFO
+        );
+      },
     },
     {
       name: "Keyboard Shortcuts",
       icon: <Article size={iconSize} />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(
+          LEFT_BAR.SETTING_SUB_TYPE.KEYBOARD_SHORTCUTS
+        );
+      },
     },
     {
       name: "Help",
       icon: <WarningCircle size={iconSize} s />,
-      onClick: () => {},
+      onClick: () => {
+        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.HELP);
+      },
     },
   ];
 
@@ -93,10 +115,10 @@ function Setting() {
               flexDirection: "column",
               alignItems: "center",
             }}
+            onClick={option.onClick}
           >
             <Typography
               type="h5"
-              onClick={option.onClick}
               key={index}
               style={{
                 padding: "20px 20px",

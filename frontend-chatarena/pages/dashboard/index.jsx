@@ -5,7 +5,16 @@ import ConversationArea from "@/components/conversationArea/conversationArea";
 import Noconversation from "@/components/conversationArea/noconversation";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
 import ProfileOverview from "@/components/profiles/profileOverview";
+import ChatWallpaper from "@/components/settings/ChatWallpaper";
+import Help from "@/components/settings/Help";
+import NotificationSettings from "@/components/settings/NotificationSettings";
+import Privacy from "@/components/settings/Privacy";
+import RequestAccountInfo from "@/components/settings/RequestAccountInfo";
+import Security from "@/components/settings/Security";
 import Setting from "@/components/settings/Setting";
+import Theme from "@/components/settings/Theme";
+import KeyboardShortCut from "@/components/settings/keyboardShortCut";
+import { LEFT_BAR } from "@/constants/appConstant";
 import { useSelector } from "@/store/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -18,8 +27,11 @@ const StyledDashboardMainContainer = styled("div")(({}) => ({
 }));
 
 const Dashboard = () => {
+  const { leftBar } = useSelector((state) => ({
+    leftBar: state.app.leftBar,
+  }));
+
   const router = useRouter();
-  const [activeIndex, setActiveIndex] = useState(0);
   const [conversationId, setConversationId] = useState(null);
 
   useEffect(() => {
@@ -32,11 +44,40 @@ const Dashboard = () => {
 
   return (
     <StyledDashboardMainContainer>
-      <Leftbar activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
-      {activeIndex == 0 ? <Chats /> : null}
-      {activeIndex == 1 ? <AllContacts /> : null}
-      {activeIndex == 2 ? <CallLogs /> : null}
-      {activeIndex == 3 ? <Setting /> : null}
+      <Leftbar activeLeftBarType={leftBar.type} />
+      {(() => {
+        switch (leftBar.type) {
+          case LEFT_BAR.TYPE.CHAT:
+            return <Chats />;
+          case LEFT_BAR.TYPE.ALL_CONTACTS:
+            return <AllContacts />;
+          case LEFT_BAR.TYPE.CALL_LOGS:
+            return <CallLogs />;
+          case LEFT_BAR.TYPE.SETTINGS:
+            switch (leftBar.subType) {
+              case LEFT_BAR.SETTING_SUB_TYPE.Notification:
+                return <NotificationSettings />;
+              case LEFT_BAR.SETTING_SUB_TYPE.PRIVACY:
+                return <Privacy />;
+              case LEFT_BAR.SETTING_SUB_TYPE.SECURITY:
+                return <Security />;
+              case LEFT_BAR.SETTING_SUB_TYPE.THEME:
+                return <Theme />;
+              case LEFT_BAR.SETTING_SUB_TYPE.CHAT_WALLPAPER:
+                return <ChatWallpaper />;
+              case LEFT_BAR.SETTING_SUB_TYPE.REQUEST_ACCOUNT_INFO:
+                return <RequestAccountInfo />;
+              case LEFT_BAR.SETTING_SUB_TYPE.KEYBOARD_SHORTCUTS:
+                return <KeyboardShortCut />;
+              case LEFT_BAR.SETTING_SUB_TYPE.HELP:
+                return <Help />;
+              default:
+                return <Setting />;
+            }
+          default:
+            return null;
+        }
+      })()}
       {conversationId ? <ConversationArea /> : <Noconversation />}
       <ProfileOverview />
     </StyledDashboardMainContainer>

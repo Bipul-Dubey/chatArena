@@ -4,6 +4,7 @@ import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { CaretLeft } from "@phosphor-icons/react/dist/ssr";
 import { Container, StyledHorizontalLine, Typography } from "../common/common";
 import { CheckboxButton } from "../buttons";
+import { handleUpdateLeftBarSubType } from "@/store/services/app";
 
 function NotificationSettings({}) {
   const [settingOptions, setSettingOptions] = useState([
@@ -34,11 +35,15 @@ function NotificationSettings({}) {
     },
   ]);
 
-  console.log("checkedddd", settingOptions);
-
   return (
     <StyledMainChatContainer>
-      <OpenLefBarHeader name="Notification" icon={<CaretLeft />} />
+      <OpenLefBarHeader
+        name="Notification"
+        icon={<CaretLeft />}
+        onClick={() => {
+          handleUpdateLeftBarSubType("");
+        }}
+      />
       <Container>
         {settingOptions?.map((setting, index) => (
           <div>

@@ -5,6 +5,8 @@ import {
   Typography,
 } from "@/components/common/common";
 import { Options } from "@/components/common/menuOptions";
+import { LEFT_BAR } from "@/constants/appConstant";
+import { handleUpdateToggleLeftBar } from "@/store/services/app";
 import {
   ChatCircleDots,
   Gear,
@@ -51,7 +53,7 @@ const StyledAlign = styled("div")(({ bottom = false }) => ({
   gap: bottom ? 9 : "",
 }));
 
-const Leftbar = ({ activeIndex = 0, setActiveIndex = () => {} }) => {
+const Leftbar = ({ activeLeftBarType = "" }) => {
   return (
     <StyledLeftbarContainer>
       <StyledAlign>
@@ -61,34 +63,34 @@ const Leftbar = ({ activeIndex = 0, setActiveIndex = () => {} }) => {
             size="45px"
             icon={<ChatCircleDots size={"30px"} />}
             onClick={() => {
-              setActiveIndex(0);
+              handleUpdateToggleLeftBar(LEFT_BAR.TYPE.CHAT);
             }}
-            isactive={activeIndex == 0}
+            isactive={activeLeftBarType == LEFT_BAR.TYPE.CHAT}
           />
           <IconButton
             size="45px"
             icon={<Users size={"30px"} />}
             onClick={() => {
-              setActiveIndex(1);
+              handleUpdateToggleLeftBar(LEFT_BAR.TYPE.ALL_CONTACTS);
             }}
-            isactive={activeIndex == 1}
+            isactive={activeLeftBarType == LEFT_BAR.TYPE.ALL_CONTACTS}
           />
           <IconButton
             size="45px"
             icon={<Phone size={"30px"} />}
             onClick={() => {
-              setActiveIndex(2);
+              handleUpdateToggleLeftBar(LEFT_BAR.TYPE.CALL_LOGS);
             }}
-            isactive={activeIndex == 2}
+            isactive={activeLeftBarType == LEFT_BAR.TYPE.CALL_LOGS}
           />
           <StyledHorizontalLine />
           <IconButton
             size="45px"
             icon={<Gear size={"30px"} />}
             onClick={() => {
-              setActiveIndex(3);
+              handleUpdateToggleLeftBar(LEFT_BAR.TYPE.SETTINGS);
             }}
-            isactive={activeIndex == 3}
+            isactive={activeLeftBarType == LEFT_BAR.TYPE.SETTINGS}
           />
         </StyledOptionContainer>
       </StyledAlign>
