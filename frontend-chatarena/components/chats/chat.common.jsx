@@ -10,6 +10,7 @@ export const StyledMainChatContainer = styled("div")(({}) => ({
   flexDirection: "column",
   height: "100vh",
   minHeight: "500px",
+  maxWidth: "350px",
 }));
 
 export const StyledTopContainer = styled("div")(({}) => ({

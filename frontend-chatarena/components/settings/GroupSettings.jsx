@@ -1,18 +1,19 @@
 import React from "react";
-import { Container } from "../common/common";
-import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { StyledMainChatContainer } from "../chats/chat.common";
-import { CaretLeft } from "@phosphor-icons/react";
+import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { handleUpdateLeftBarSubType } from "@/store/services/app";
+import { Container } from "../common/common";
+import { CaretLeft } from "@phosphor-icons/react";
+import { LEFT_BAR } from "@/constants/appConstant";
 
-function Theme() {
+function GroupSetting() {
   return (
     <StyledMainChatContainer>
       <OpenLefBarHeader
-        name="Themes"
+        name="Groups"
         icon={<CaretLeft />}
         onClick={() => {
-          handleUpdateLeftBarSubType("");
+          handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.PRIVACY);
         }}
       />
       <Container></Container>
@@ -20,4 +21,4 @@ function Theme() {
   );
 }
 
-export default Theme;
+export default GroupSetting;

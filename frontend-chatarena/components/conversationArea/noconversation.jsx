@@ -1,4 +1,6 @@
+import { handleUpdateToggleLeftBar } from "@/store/services/app";
 import { Typography } from "../common/common";
+import { LEFT_BAR } from "@/constants/appConstant";
 
 const Noconversation = () => {
   return (
@@ -22,7 +24,21 @@ const Noconversation = () => {
         alt="nochat"
         style={{ objectFit: "contain" }}
       />
-      <Typography type="h4">Select a conversation to start a chat</Typography>
+      <Typography type="h4">
+        Select a conversation or{" "}
+        <span
+          onClick={() => {
+            handleUpdateToggleLeftBar(LEFT_BAR.TYPE.ALL_CONTACTS);
+          }}
+          style={{
+            color: "#244ddf",
+            textDecoration: "underline",
+            cursor: "pointer",
+          }}
+        >
+          start a new one
+        </span>
+      </Typography>
     </div>
   );
 };

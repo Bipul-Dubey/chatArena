@@ -9,6 +9,7 @@ const initialState = {
   leftBar: {
     type: LEFT_BAR.TYPE.CHAT,
     subType: "",
+    privacySubType: "",
   },
   // for APIs
   isLoading: false,
@@ -31,6 +32,12 @@ const appSlice = createSlice({
     },
     UpdateLeftBarSubType(state, actions) {
       state.leftBar.subType = actions.payload;
+      if (actions.payload == LEFT_BAR.SETTING_SUB_TYPE.PRIVACY) {
+        state.leftBar.privacySubType = "";
+      }
+    },
+    UpdateLeftBarPrivacyType(state, actions) {
+      state.leftBar.privacySubType = actions.payload;
     },
   },
 });
@@ -42,4 +49,5 @@ export const {
   UpdateToggleSidebar,
   UpdateLeftBarType,
   UpdateLeftBarSubType,
+  UpdateLeftBarPrivacyType,
 } = appSlice.actions;

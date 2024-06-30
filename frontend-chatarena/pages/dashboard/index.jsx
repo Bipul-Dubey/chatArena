@@ -5,10 +5,15 @@ import ConversationArea from "@/components/conversationArea/conversationArea";
 import Noconversation from "@/components/conversationArea/noconversation";
 import Leftbar from "@/components/menubar/leftbar/leftbar";
 import ProfileOverview from "@/components/profiles/profileOverview";
+import AboutSetting from "@/components/settings/AboutSetting";
+import BlockedContact from "@/components/settings/BlockedContact";
 import ChatWallpaper from "@/components/settings/ChatWallpaper";
+import GroupSetting from "@/components/settings/GroupSettings";
 import Help from "@/components/settings/Help";
+import LastSeen from "@/components/settings/LastSeen";
 import NotificationSettings from "@/components/settings/NotificationSettings";
 import Privacy from "@/components/settings/Privacy";
+import ProfilePhotos from "@/components/settings/ProfilePhotos";
 import RequestAccountInfo from "@/components/settings/RequestAccountInfo";
 import Security from "@/components/settings/Security";
 import Setting from "@/components/settings/Setting";
@@ -42,6 +47,8 @@ const Dashboard = () => {
     }
   }, [router]);
 
+  console.log("leftBar", leftBar);
+
   return (
     <StyledDashboardMainContainer>
       <Leftbar activeLeftBarType={leftBar.type} />
@@ -58,7 +65,20 @@ const Dashboard = () => {
               case LEFT_BAR.SETTING_SUB_TYPE.Notification:
                 return <NotificationSettings />;
               case LEFT_BAR.SETTING_SUB_TYPE.PRIVACY:
-                return <Privacy />;
+                switch (leftBar.privacySubType) {
+                  case LEFT_BAR.Privacy_SUB_TYPE.Last_Seen:
+                    return <LastSeen />;
+                  case LEFT_BAR.Privacy_SUB_TYPE.Profile_Photo:
+                    return <ProfilePhotos />;
+                  case LEFT_BAR.Privacy_SUB_TYPE.About:
+                    return <AboutSetting />;
+                  case LEFT_BAR.Privacy_SUB_TYPE.Groups:
+                    return <GroupSetting />;
+                  case LEFT_BAR.Privacy_SUB_TYPE.Blocked_Contacts:
+                    return <BlockedContact />;
+                  default:
+                    return <Privacy />;
+                }
               case LEFT_BAR.SETTING_SUB_TYPE.SECURITY:
                 return <Security />;
               case LEFT_BAR.SETTING_SUB_TYPE.THEME:

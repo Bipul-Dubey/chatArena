@@ -1,4 +1,5 @@
 import {
+  UpdateLeftBarPrivacyType,
   UpdateLeftBarSubType,
   UpdateLeftBarType,
   UpdateToggleSidebar,
@@ -20,4 +21,8 @@ export const handleUpdateToggleLeftBar = (type = "") => {
 
 export const handleUpdateLeftBarSubType = (subtype = "") => {
   return store.dispatch(UpdateLeftBarSubType(subtype));
+};
+
+export const handleUpdateLeftBarPrivacy = (privacy = "") => {
+  return store.dispatch(UpdateLeftBarPrivacyType(privacy));
 };

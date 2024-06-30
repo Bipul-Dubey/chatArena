@@ -15,6 +15,14 @@ export const LEFT_BAR = {
     KEYBOARD_SHORTCUTS: "keyboard_shortcuts",
     HELP: "help",
   },
+  Privacy_SUB_TYPE: {
+    Last_Seen: "Last Seen",
+    Profile_Photo: "Profile Photo",
+    About: "About",
+    Read_Receipts: "Read Receipts",
+    Groups: "Groups",
+    Blocked_Contacts: "Blocked Contacts",
+  },
 };
 
 export const RIGHT_BAR = {
