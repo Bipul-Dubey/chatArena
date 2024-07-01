@@ -47,8 +47,6 @@ const Dashboard = () => {
     }
   }, [router]);
 
-  console.log("leftBar", leftBar);
-
   return (
     <StyledDashboardMainContainer>
       <Leftbar activeLeftBarType={leftBar.type} />

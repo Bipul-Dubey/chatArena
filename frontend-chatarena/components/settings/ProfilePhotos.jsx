@@ -1,22 +1,15 @@
 import React from "react";
 import { StyledMainChatContainer } from "../chats/chat.common";
-import OpenLefBarHeader from "../common/OpenLeftbarHeader";
-import { handleUpdateLeftBarSubType } from "@/store/services/app";
-import { Container } from "../common/common";
-import { CaretLeft } from "@phosphor-icons/react";
-import { LEFT_BAR } from "@/constants/appConstant";
+import SelectFrom3 from "./SelectFrom3";
 
 function ProfilePhotos() {
   return (
     <StyledMainChatContainer>
-      <OpenLefBarHeader
-        name="Profile Photo"
-        icon={<CaretLeft />}
-        onClick={() => {
-          handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.PRIVACY);
-        }}
+      <SelectFrom3
+        feature="Profile Photos"
+        message="Who can see my profile photo"
+        getUpdatedState={(data) => console.log(data)}
       />
-      <Container></Container>
     </StyledMainChatContainer>
   );
 }

@@ -110,10 +110,12 @@ function Privacy() {
                               handleUpdateLeftBarPrivacy(
                                 LEFT_BAR.Privacy_SUB_TYPE.About
                               );
+                              return;
                             case LEFT_BAR.Privacy_SUB_TYPE.Groups:
                               handleUpdateLeftBarPrivacy(
                                 LEFT_BAR.Privacy_SUB_TYPE.Groups
                               );
+                              return;
                             case LEFT_BAR.Privacy_SUB_TYPE.Blocked_Contacts:
                               handleUpdateLeftBarPrivacy(
                                 LEFT_BAR.Privacy_SUB_TYPE.Blocked_Contacts

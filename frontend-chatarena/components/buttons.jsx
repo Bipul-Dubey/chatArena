@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Typography } from "./common/common";
 
 const StyledIconButton = styled("div")(
   ({
@@ -68,4 +69,24 @@ export const CheckboxButton = ({
   small = false,
 }) => {
   return <StyledCheckbox checked={checked} onClick={onClick} small={small} />;
+};
+
+// radio buttons
+const StyledRadioButton = styled.input.attrs({ type: "radio" })(
+  ({ small = false, size = "20px" }) => ({
+    width: small ? "15px" : size,
+    height: small ? "15px" : size,
+    cursor: "pointer",
+    "&:checked": {
+      backgroundColor: "#4caf50",
+    },
+  })
+);
+
+export const RadioButton = ({
+  checked = false,
+  onClick = () => {},
+  ...props
+}) => {
+  return <StyledRadioButton checked={checked} onClick={onClick} {...props} />;
 };

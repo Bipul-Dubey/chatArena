@@ -1,22 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledMainChatContainer } from "../chats/chat.common";
-import OpenLefBarHeader from "../common/OpenLeftbarHeader";
-import { handleUpdateLeftBarSubType } from "@/store/services/app";
-import { Container } from "../common/common";
-import { CaretLeft } from "@phosphor-icons/react";
-import { LEFT_BAR } from "@/constants/appConstant";
+import SelectFrom3 from "./SelectFrom3";
 
 function LastSeen() {
   return (
     <StyledMainChatContainer>
-      <OpenLefBarHeader
-        name="Last Seen"
-        icon={<CaretLeft />}
-        onClick={() => {
-          handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.PRIVACY);
-        }}
+      <SelectFrom3
+        feature="Last Seen"
+        message="If you don’t share your Last Seen, you won’t be able to see other
+          people’s Last Seen"
+        getUpdatedState={(data) => console.log(data)}
       />
-      <Container></Container>
     </StyledMainChatContainer>
   );
 }
