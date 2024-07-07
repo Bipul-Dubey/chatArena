@@ -19,7 +19,7 @@ import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { BlockedChat } from "../chats/chat";
 
 function BlockedContact() {
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   return (
     <StyledMainChatContainer>
@@ -62,7 +62,11 @@ function BlockedContact() {
                       gap: 20,
                     }}
                   >
-                    <IconButton icon={<X size={22} />} noshadow />
+                    <IconButton
+                      icon={<X size={22} />}
+                      noshadow
+                      onClick={closeModal}
+                    />
                     <Typography type="h3">Block New Contact</Typography>
                   </Container>
                   <StyledHorizontalLine />
