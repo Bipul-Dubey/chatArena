@@ -39,15 +39,17 @@ export const StyledChatContainer = styled("div")(
   })
 );
 
-export const StyledChatMainContainer = styled("div")(({}) => ({
-  backgroundColor: "#D0ECFA",
-  padding: "10px 10px",
-  minHeight: "max-content",
-  borderRadius: 9,
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  "&:hover": {
-    cursor: "pointer",
-  },
-}));
+export const StyledChatMainContainer = styled("div")(
+  ({ backgroundColor = "#D0ECFA" }) => ({
+    backgroundColor: backgroundColor,
+    padding: "10px 10px",
+    minHeight: "max-content",
+    borderRadius: 9,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  })
+);
