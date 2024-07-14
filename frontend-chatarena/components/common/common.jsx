@@ -25,7 +25,7 @@ export const StyledHorizontalLine = styled("hr")(
     width: width,
     height: "0.1rem",
     backgroundColor: "gray",
-    boxShadow: "0px 1px 1px 1px rgba(168, 168, 168, 0.5)",
+    boxShadow: "0px 0.1px 0.01px 0.5px rgba(168, 168, 168, 0.5)",
     padding: padding,
   })
 );

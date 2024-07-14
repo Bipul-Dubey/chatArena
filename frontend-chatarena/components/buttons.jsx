@@ -90,3 +90,47 @@ export const RadioButton = ({
 }) => {
   return <StyledRadioButton checked={checked} onClick={onClick} {...props} />;
 };
+
+// === buttons ===
+const StyledButton = styled("button")(({ btnColor }) => ({
+  padding: 5,
+  fontSize: "1.1rem",
+  borderRadius: 7,
+  border: btnColor.border ? `1px solid ${btnColor.border}` : "0px",
+  backgroundColor: btnColor.bgColor,
+  color: btnColor.textColor,
+  boxShadow: btnColor.shadow,
+  height: "33px",
+  width: "80px",
+  transition: "all 0.3s ease-in-out",
+  "&:hover": {
+    backgroundColor: btnColor.hoverBgColor,
+    color: btnColor.hoverTextColor,
+  },
+  "&:active": {
+    transform: "scale(1.05)",
+  },
+}));
+
+export const Button = ({ children, type = "primary" }) => {
+  const buttonBgColor = {
+    primary: {
+      bgColor: "#1464e3",
+      shadow: "",
+      textColor: "#fff",
+      hoverBgColor: "",
+      hoverTextColor: "",
+    },
+    secondary: {
+      bgColor: "#ffffff",
+      shadow: "",
+      textColor: "#000000",
+      border: "#000",
+      hoverBgColor: "",
+      hoverTextColor: "",
+    },
+  };
+  return (
+    <StyledButton btnColor={buttonBgColor[type] || {}}>{children}</StyledButton>
+  );
+};

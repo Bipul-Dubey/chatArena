@@ -21,7 +21,7 @@ const StyledModal = styled("div")(({}) => ({
   borderRadius: "5px",
   maxWidth: "80vw",
   maxHeight: "90vh",
-  overflowY: "scroll",
+  // overflowY: "scroll",
   borderRadius: 27,
 }));
 

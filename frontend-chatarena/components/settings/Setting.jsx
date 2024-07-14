@@ -20,8 +20,11 @@ import {
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { handleUpdateLeftBarSubType } from "@/store/services/app";
 import { LEFT_BAR } from "@/constants/appConstant";
+import { useModal } from "../common/top.components/ModalContext";
+import ThemeSelection from "./Theme";
 
 function Setting() {
+  const { openModal } = useModal();
   const iconSize = 20;
   const settingOptions = [
     {
@@ -49,7 +52,7 @@ function Setting() {
       name: "Theme",
       icon: <PencilCircle size={iconSize} />,
       onClick: () => {
-        handleUpdateLeftBarSubType(LEFT_BAR.SETTING_SUB_TYPE.THEME);
+        openModal(<ThemeSelection />);
       },
     },
     {
@@ -65,15 +68,6 @@ function Setting() {
       onClick: () => {
         handleUpdateLeftBarSubType(
           LEFT_BAR.SETTING_SUB_TYPE.REQUEST_ACCOUNT_INFO
-        );
-      },
-    },
-    {
-      name: "Keyboard Shortcuts",
-      icon: <Article size={iconSize} />,
-      onClick: () => {
-        handleUpdateLeftBarSubType(
-          LEFT_BAR.SETTING_SUB_TYPE.KEYBOARD_SHORTCUTS
         );
       },
     },

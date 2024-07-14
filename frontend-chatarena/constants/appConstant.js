@@ -12,7 +12,6 @@ export const LEFT_BAR = {
     THEME: "theme",
     CHAT_WALLPAPER: "chat_wallpaper",
     REQUEST_ACCOUNT_INFO: "request_account_info",
-    KEYBOARD_SHORTCUTS: "keyboard_shortcuts",
     HELP: "help",
   },
   Privacy_SUB_TYPE: {
@@ -30,3 +29,14 @@ export const RIGHT_BAR = {
     OVER_VIEW: "overview",
   },
 };
+
+export const THEME_OPTIONS = [
+  {
+    isChecked: true,
+    label: "Light",
+  },
+  {
+    isChecked: false,
+    label: "Dark",
+  },
+];

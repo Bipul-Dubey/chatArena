@@ -17,8 +17,6 @@ import ProfilePhotos from "@/components/settings/ProfilePhotos";
 import RequestAccountInfo from "@/components/settings/RequestAccountInfo";
 import Security from "@/components/settings/Security";
 import Setting from "@/components/settings/Setting";
-import Theme from "@/components/settings/Theme";
-import KeyboardShortCut from "@/components/settings/keyboardShortCut";
 import { LEFT_BAR } from "@/constants/appConstant";
 import { useSelector } from "@/store/store";
 import { useRouter } from "next/router";
@@ -79,14 +77,10 @@ const Dashboard = () => {
                 }
               case LEFT_BAR.SETTING_SUB_TYPE.SECURITY:
                 return <Security />;
-              case LEFT_BAR.SETTING_SUB_TYPE.THEME:
-                return <Theme />;
               case LEFT_BAR.SETTING_SUB_TYPE.CHAT_WALLPAPER:
                 return <ChatWallpaper />;
               case LEFT_BAR.SETTING_SUB_TYPE.REQUEST_ACCOUNT_INFO:
                 return <RequestAccountInfo />;
-              case LEFT_BAR.SETTING_SUB_TYPE.KEYBOARD_SHORTCUTS:
-                return <KeyboardShortCut />;
               case LEFT_BAR.SETTING_SUB_TYPE.HELP:
                 return <Help />;
               default:
