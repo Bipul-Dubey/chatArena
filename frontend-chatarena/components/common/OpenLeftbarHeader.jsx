@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledTopContainer } from "../chats/chat.common";
 import { Typography } from "./common";
 import { IconButton } from "../buttons";

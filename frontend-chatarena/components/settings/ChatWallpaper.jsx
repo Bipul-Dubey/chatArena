@@ -1,4 +1,3 @@
-import React from "react";
 import { Container } from "../common/common";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { StyledMainChatContainer } from "../chats/chat.common";

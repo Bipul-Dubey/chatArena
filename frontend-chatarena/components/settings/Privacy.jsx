@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Container, StyledHorizontalLine, Typography } from "../common/common";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { StyledMainChatContainer } from "../chats/chat.common";

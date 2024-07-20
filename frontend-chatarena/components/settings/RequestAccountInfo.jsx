@@ -1,4 +1,3 @@
-import React from "react";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { StyledMainChatContainer } from "../chats/chat.common";
 import { CaretLeft, ClipboardText } from "@phosphor-icons/react";

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Typography } from "./common/common";
 
 const StyledIconButton = styled("div")(
   ({

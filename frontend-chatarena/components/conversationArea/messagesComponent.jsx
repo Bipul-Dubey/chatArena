@@ -5,7 +5,6 @@ import {
   DotsThreeVertical,
   DownloadSimple,
   Images,
-  KeyReturn,
 } from "@phosphor-icons/react";
 import { IconButton } from "../buttons";
 import { Options } from "../common/menuOptions";

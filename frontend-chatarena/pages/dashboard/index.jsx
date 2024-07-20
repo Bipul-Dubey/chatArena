@@ -1,33 +1,96 @@
-import AllContacts from "@/components/chats/allContacts";
-import CallLogs from "@/components/chats/callLogs";
-import Chats from "@/components/chats/chats";
-import ConversationArea from "@/components/conversationArea/conversationArea";
-import Noconversation from "@/components/conversationArea/noconversation";
-import Leftbar from "@/components/menubar/leftbar/leftbar";
-import ProfileOverview from "@/components/profiles/profileOverview";
-import AboutSetting from "@/components/settings/AboutSetting";
-import BlockedContact from "@/components/settings/BlockedContact";
-import ChatWallpaper from "@/components/settings/ChatWallpaper";
-import GroupSetting from "@/components/settings/GroupSettings";
-import Help from "@/components/settings/Help";
-import LastSeen from "@/components/settings/LastSeen";
-import NotificationSettings from "@/components/settings/NotificationSettings";
-import Privacy from "@/components/settings/Privacy";
-import ProfilePhotos from "@/components/settings/ProfilePhotos";
-import RequestAccountInfo from "@/components/settings/RequestAccountInfo";
-import Security from "@/components/settings/Security";
-import Setting from "@/components/settings/Setting";
+import dynamic from "next/dynamic";
+import Loading from "@/components/common/Loading";
+
+// Dynamically import components with a loading component
+const AllContacts = dynamic(() => import("@/components/chats/allContacts"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const CallLogs = dynamic(() => import("@/components/chats/callLogs"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const Chats = dynamic(() => import("@/components/chats/chats"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const ConversationArea = dynamic(
+  () => import("@/components/conversationArea/conversationArea"),
+  { loading: () => <Loading />, ssr: false }
+);
+const Noconversation = dynamic(
+  () => import("@/components/conversationArea/noconversation"),
+  { loading: () => <Loading />, ssr: false }
+);
+const StyledDashboardMainContainer = dynamic(
+  () =>
+    import("@/components/dashboard/dashboardComponent").then(
+      (mod) => mod.StyledDashboardMainContainer
+    ),
+  { loading: () => <Loading />, ssr: false }
+);
+const Leftbar = dynamic(() => import("@/components/menubar/leftbar/leftbar"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const ProfileOverview = dynamic(
+  () => import("@/components/profiles/profileOverview"),
+  { loading: () => <Loading />, ssr: false }
+);
+const AboutSetting = dynamic(
+  () => import("@/components/settings/AboutSetting"),
+  { loading: () => <Loading />, ssr: false }
+);
+const BlockedContact = dynamic(
+  () => import("@/components/settings/BlockedContact"),
+  { loading: () => <Loading />, ssr: false }
+);
+const ChatWallpaper = dynamic(
+  () => import("@/components/settings/ChatWallpaper"),
+  { loading: () => <Loading />, ssr: false }
+);
+const GroupSetting = dynamic(
+  () => import("@/components/settings/GroupSettings"),
+  { loading: () => <Loading />, ssr: false }
+);
+const Help = dynamic(() => import("@/components/settings/Help"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const LastSeen = dynamic(() => import("@/components/settings/LastSeen"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const NotificationSettings = dynamic(
+  () => import("@/components/settings/NotificationSettings"),
+  { loading: () => <Loading />, ssr: false }
+);
+const Privacy = dynamic(() => import("@/components/settings/Privacy"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const ProfilePhotos = dynamic(
+  () => import("@/components/settings/ProfilePhotos"),
+  { loading: () => <Loading />, ssr: false }
+);
+const RequestAccountInfo = dynamic(
+  () => import("@/components/settings/RequestAccountInfo"),
+  { loading: () => <Loading />, ssr: false }
+);
+const Security = dynamic(() => import("@/components/settings/Security"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+const Setting = dynamic(() => import("@/components/settings/Setting"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
+// Import constants and hooks
 import { LEFT_BAR } from "@/constants/appConstant";
 import { useSelector } from "@/store/store";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-
-const StyledDashboardMainContainer = styled("div")(({}) => ({
-  backgroundColor: "#f0F5FB",
-  display: "flex",
-  minHeight: "100vh",
-}));
 
 const Dashboard = () => {
   const { leftBar } = useSelector((state) => ({

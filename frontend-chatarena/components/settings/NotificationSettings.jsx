@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { StyledMainChatContainer } from "../chats/chat.common";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { CaretLeft } from "@phosphor-icons/react/dist/ssr";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Typography } from "../common/common";
 import { Button, RadioButton } from "../buttons";
 import { THEME_OPTIONS } from "@/constants/appConstant";

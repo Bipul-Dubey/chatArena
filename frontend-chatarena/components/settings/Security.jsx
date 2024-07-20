@@ -1,5 +1,4 @@
-import React from "react";
-import { Container, Typography } from "../common/common";
+import { Typography } from "../common/common";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
 import { StyledMainChatContainer } from "../chats/chat.common";
 import {

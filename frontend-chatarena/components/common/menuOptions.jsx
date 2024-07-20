@@ -1,5 +1,4 @@
-import { DotsThreeVertical } from "@phosphor-icons/react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const MenuContainer = styled("div")(({}) => ({

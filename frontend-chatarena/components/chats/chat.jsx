@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, Container, UnreadMessage } from "../common/common";
 import { useRouter } from "next/router";
 import { StyledChatMainContainer } from "./chat.common";

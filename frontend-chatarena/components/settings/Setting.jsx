@@ -1,4 +1,3 @@
-import React from "react";
 import { StyledMainChatContainer } from "../chats/chat.common";
 import {
   Avatar,

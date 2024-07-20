@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { RadioButton } from "../buttons";
 import { Container, StyledHorizontalLine, Typography } from "../common/common";
 import OpenLefBarHeader from "../common/OpenLeftbarHeader";
