@@ -4,6 +4,7 @@ export const LEFT_BAR = {
     ALL_CONTACTS: "all_contactS",
     CALL_LOGS: "call_logs",
     SETTINGS: "settings",
+    CURRENT_PROFILE: "current_profile",
   },
   SETTING_SUB_TYPE: {
     Notification: "notification",

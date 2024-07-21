@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { faker } from "@faker-js/faker/locale/af_ZA";
 import { IconButton } from "../buttons";
+import { useState } from "react";
 
 // ==================== Container ====================
 const StyledContainer = styled("div")(({ row = false, center = false }) => ({
@@ -173,8 +174,14 @@ const StyledTextfieldContainer = styled("div")(({}) => ({
 }));
 
 const StyledTextfield = styled("input")(
-  ({ borderColor = "", isStartIcon = false, isEndIcon = false }) => ({
+  ({
+    borderColor = "",
+    isStartIcon = false,
+    isEndIcon = false,
+    height = "",
+  }) => ({
     width: "100%",
+    height: height,
     padding: 10,
     paddingLeft: isStartIcon ? "45px" : "",
     paddingRight: isEndIcon ? "45px" : "",
@@ -206,18 +213,44 @@ const StyledEndIconContainer = styled("div")(({}) => ({
   justifyContent: "center",
 }));
 
+const StyledLabel = styled("label")(({ isactive = false }) => ({
+  position: "absolute",
+  top: isactive ? "0px" : "50%",
+  left: "10px",
+  fontSize: "1rem",
+  color: "#7f7e7e",
+  transform: "translateY(-50%)",
+  transition: "all 0.5s ease",
+  PointerEvent: "none",
+  fontWeight: 600,
+}));
+
 export const TextField = ({
   borderColor = "#40C7F1",
   placeholder = "",
   onChange = () => {},
   iconStart = "",
   iconEnd = "",
+  label = "",
+  height = "",
 }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleFocus = () => setIsActive(true);
+  const handleBlur = (event) => {
+    if (!event.target.value) {
+      setIsActive(false);
+    }
+  };
+
   return (
     <StyledTextfieldContainer
       isStartIcon={iconStart ? true : false}
       isEndIcon={iconEnd ? true : false}
     >
+      {label && isActive && (
+        <StyledLabel isactive={isActive || !!placeholder}>{label}</StyledLabel>
+      )}
       {iconStart ? (
         <StyledStartIconContainer>
           {<IconButton disabled icon={iconStart} noshadow />}
@@ -226,11 +259,14 @@ export const TextField = ({
         ""
       )}
       <StyledTextfield
-        placeholder={placeholder}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={isActive ? placeholder : label}
         onChange={onChange}
         borderColor={borderColor}
         isStartIcon={iconStart ? true : false}
         isEndIcon={iconEnd ? true : false}
+        height={height}
       />
       {iconEnd ? (
         <StyledEndIconContainer>

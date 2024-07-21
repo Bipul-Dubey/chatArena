@@ -85,6 +85,10 @@ const Setting = dynamic(() => import("@/components/settings/Setting"), {
   loading: () => <Loading />,
   ssr: false,
 });
+const CurrentUser = dynamic(() => import("@/components/profiles/CurrentUser"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
 
 // Import constants and hooks
 import { LEFT_BAR } from "@/constants/appConstant";
@@ -149,6 +153,8 @@ const Dashboard = () => {
               default:
                 return <Setting />;
             }
+          case LEFT_BAR.TYPE.CURRENT_PROFILE:
+            return <CurrentUser />;
           default:
             return null;
         }

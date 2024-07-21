@@ -111,7 +111,7 @@ const StyledButton = styled("button")(({ btnColor }) => ({
   },
 }));
 
-export const Button = ({ children, type = "primary" }) => {
+export const Button = ({ children, type = "primary", props }) => {
   const buttonBgColor = {
     primary: {
       bgColor: "#1464e3",
@@ -130,6 +130,8 @@ export const Button = ({ children, type = "primary" }) => {
     },
   };
   return (
-    <StyledButton btnColor={buttonBgColor[type] || {}}>{children}</StyledButton>
+    <StyledButton btnColor={buttonBgColor[type] || {}} {...props}>
+      {children}
+    </StyledButton>
   );
 };
