@@ -3,7 +3,13 @@ import {
   StyledMainChatContainer,
   StyledTopContainer,
 } from "../chats/chat.common";
-import { Avatar, Container, TextField, Typography } from "../common/common";
+import {
+  Avatar,
+  Container,
+  TextArea,
+  TextField,
+  Typography,
+} from "../common/common";
 
 function CurrentUser({}) {
   return (
@@ -39,7 +45,7 @@ function CurrentUser({}) {
               This Name is visible to other users
             </Typography>
           </div>
-          <TextField label="About" />
+          <TextArea label="About" />
           <div
             style={{
               width: "100%",

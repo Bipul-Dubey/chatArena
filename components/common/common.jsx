@@ -314,3 +314,87 @@ export const Marquee = ({ children }) => {
     </MarqueeWrapper>
   );
 };
+
+// ==================== MultilineText ====================
+const StyledMultilineTextContainer = styled("div")(({}) => ({
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+}));
+
+const StyledMultilineText = styled("textarea")(
+  ({
+    borderColor = "",
+    isStartIcon = false,
+    isEndIcon = false,
+    height = "",
+  }) => ({
+    width: "100%",
+    height: height,
+    padding: 7,
+    paddingLeft: isStartIcon ? "45px" : "",
+    paddingRight: isEndIcon ? "45px" : "",
+    fontSize: "1rem",
+    borderRadius: 7,
+    backgroundColor: "#d0ecfa",
+    border: "none",
+    resize: "none",
+    "&:focus": {
+      borderColor: borderColor,
+      outline: "none",
+      borderRadius: 7,
+    },
+  })
+);
+
+export const TextArea = ({
+  borderColor = "#40C7F1",
+  placeholder = "",
+  onChange = () => {},
+  iconStart = "",
+  iconEnd = "",
+  label = "",
+  height = "",
+}) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleFocus = () => setIsActive(true);
+  const handleBlur = (event) => {
+    if (!event.target.value) {
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <StyledMultilineTextContainer
+      isStartIcon={iconStart ? true : false}
+      isEndIcon={iconEnd ? true : false}
+    >
+      {iconStart ? (
+        <StyledStartIconContainer>
+          {<IconButton disabled icon={iconStart} noshadow />}
+        </StyledStartIconContainer>
+      ) : (
+        ""
+      )}
+      <StyledMultilineText
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={isActive ? placeholder : label}
+        onChange={onChange}
+        borderColor={borderColor}
+        isStartIcon={iconStart ? true : false}
+        isEndIcon={iconEnd ? true : false}
+        height={height}
+      />
+      {iconEnd ? (
+        <StyledEndIconContainer>
+          {<IconButton disabled icon={iconEnd} noshadow />}
+        </StyledEndIconContainer>
+      ) : (
+        ""
+      )}
+    </StyledMultilineTextContainer>
+  );
+};
