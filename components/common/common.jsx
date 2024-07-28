@@ -123,24 +123,26 @@ export const UnreadMessage = ({
 
 // ==================== Text area ====================
 const StyledTypography = styled("div")(
-  ({ type = "", link = false, color = "", bold }) => ({
-    fontSize:
-      type == "h1"
-        ? "2.125rem"
-        : type == "h2"
-        ? "1.875rem"
-        : type == "h3"
-        ? "1.5rem"
-        : type == "h4"
-        ? "1.25rem"
-        : type == "h5"
-        ? "1.125rem"
-        : type == "h6"
-        ? "1rem"
-        : "",
+  ({ type = "", link = false, color = "", bold, size, center }) => ({
+    fontSize: size
+      ? size
+      : type == "h1"
+      ? "2.125rem"
+      : type == "h2"
+      ? "1.875rem"
+      : type == "h3"
+      ? "1.5rem"
+      : type == "h4"
+      ? "1.25rem"
+      : type == "h5"
+      ? "1.125rem"
+      : type == "h6"
+      ? "1rem"
+      : "",
     color: link ? "#1c60f4" : color,
     cursor: link ? "pointer" : "default",
     fontWeight: bold ? "bold" : "",
+    textAlign: center ? "center" : "",
   })
 );
 
@@ -151,6 +153,8 @@ export const Typography = ({
   style = {},
   color = "",
   bold = false,
+  size = "",
+  center = false,
 }) => {
   return (
     <StyledTypography
@@ -159,6 +163,8 @@ export const Typography = ({
       style={style}
       color={color}
       bold={bold}
+      size={size}
+      center={center}
     >
       {children}
     </StyledTypography>
@@ -233,24 +239,25 @@ export const TextField = ({
   iconEnd = "",
   label = "",
   height = "",
+  type = "text",
 }) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleFocus = () => setIsActive(true);
-  const handleBlur = (event) => {
-    if (!event.target.value) {
-      setIsActive(false);
-    }
-  };
+  // const handleFocus = () => setIsActive(true);
+  // const handleBlur = (event) => {
+  //   if (!event.target.value) {
+  //     setIsActive(false);
+  //   }
+  // };
 
   return (
     <StyledTextfieldContainer
       isStartIcon={iconStart ? true : false}
       isEndIcon={iconEnd ? true : false}
     >
-      {label && isActive && (
+      {/* {label && isActive && (
         <StyledLabel isactive={isActive || !!placeholder}>{label}</StyledLabel>
-      )}
+      )} */}
       {iconStart ? (
         <StyledStartIconContainer>
           {<IconButton disabled icon={iconStart} noshadow />}
@@ -259,14 +266,15 @@ export const TextField = ({
         ""
       )}
       <StyledTextfield
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        placeholder={isActive ? placeholder : label}
+        // onFocus={handleFocus}
+        // onBlur={handleBlur}
+        placeholder={placeholder || label}
         onChange={onChange}
         borderColor={borderColor}
         isStartIcon={iconStart ? true : false}
         isEndIcon={iconEnd ? true : false}
         height={height}
+        type={type}
       />
       {iconEnd ? (
         <StyledEndIconContainer>

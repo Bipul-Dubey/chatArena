@@ -91,33 +91,40 @@ export const RadioButton = ({
 };
 
 // === buttons ===
-const StyledButton = styled("button")(({ btnColor }) => ({
-  padding: 5,
-  fontSize: "1.1rem",
-  borderRadius: 7,
-  border: btnColor.border ? `1px solid ${btnColor.border}` : "0px",
-  backgroundColor: btnColor.bgColor,
-  color: btnColor.textColor,
-  boxShadow: btnColor.shadow,
-  height: "33px",
-  width: "80px",
-  transition: "all 0.3s ease-in-out",
-  "&:hover": {
-    backgroundColor: btnColor.hoverBgColor,
-    color: btnColor.hoverTextColor,
-  },
-  "&:active": {
-    transform: "scale(1.05)",
-  },
-}));
+const StyledButton = styled("button")(
+  ({ btnColor, fullwidth, width = "80px" }) => ({
+    padding: 5,
+    fontSize: "1.1rem",
+    borderRadius: 7,
+    border: btnColor.border ? `1px solid ${btnColor.border}` : "0px",
+    backgroundColor: btnColor.bgColor,
+    color: btnColor.textColor,
+    boxShadow: btnColor.shadow,
+    height: "33px",
+    width: fullwidth ? "100%" : width,
+    transition: "all 0.3s ease-in-out",
+    "&:hover": {
+      backgroundColor: btnColor.hoverBgColor,
+      color: btnColor.hoverTextColor,
+    },
+    "&:active": {
+      transform: "scale(1.05)",
+    },
+  })
+);
 
-export const Button = ({ children, type = "primary", props }) => {
+export const Button = ({
+  children,
+  type = "primary",
+  props,
+  fullwidth = "",
+}) => {
   const buttonBgColor = {
     primary: {
       bgColor: "#1464e3",
       shadow: "",
       textColor: "#fff",
-      hoverBgColor: "",
+      hoverBgColor: "#0e4397",
       hoverTextColor: "",
     },
     secondary: {
@@ -130,7 +137,11 @@ export const Button = ({ children, type = "primary", props }) => {
     },
   };
   return (
-    <StyledButton btnColor={buttonBgColor[type] || {}} {...props}>
+    <StyledButton
+      fullwidth={fullwidth}
+      btnColor={buttonBgColor[type] || {}}
+      {...props}
+    >
       {children}
     </StyledButton>
   );
