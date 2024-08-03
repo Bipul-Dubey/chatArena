@@ -244,6 +244,7 @@ export const TextField = ({
   label = "",
   height = "",
   type = "text",
+  ...props
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -272,6 +273,7 @@ export const TextField = ({
       <StyledTextfield
         // onFocus={handleFocus}
         // onBlur={handleBlur}
+        {...props}
         placeholder={placeholder || label}
         onChange={onChange}
         borderColor={borderColor}

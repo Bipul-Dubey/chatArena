@@ -16,6 +16,7 @@ import { useModal } from "../common/top.components/ModalContext";
 import { IconButton } from "../buttons";
 import ModalContainer from "../common/top.components/ModalContainer";
 import { BlockedChat } from "../chats/chat";
+import BlockNewContactModal from "./BlockNewContactModal";
 
 function BlockedContact() {
   const { openModal, closeModal } = useModal();
@@ -46,38 +47,7 @@ function BlockedContact() {
           <IconButton
             icon={<Plus size={24} color="#4172ef" />}
             noshadow
-            onClick={() =>
-              openModal(
-                <ModalContainer title="Block New Contact" scrollable>
-                  <Container
-                    style={{
-                      gap: 20,
-                      maxHeight: "100%",
-                    }}
-                  >
-                    <Container>
-                      <TextField
-                        iconStart={<MagnifyingGlass size={24} />}
-                        placeholder="Search"
-                      />
-                    </Container>
-                    <StyledChatContainer
-                      style={{
-                        gap: 9,
-                        margin: "17px 7px",
-                        overflowY: "auto",
-                      }}
-                    >
-                      {"123hdnsdfkjdfngkjdfgkddsnvkjnskjdnfkjdsnkj"
-                        ?.split("")
-                        ?.map((item, index) => (
-                          <BlockedChat user={item} newBlocked key={index} />
-                        ))}
-                    </StyledChatContainer>
-                  </Container>
-                </ModalContainer>
-              )
-            }
+            onClick={() => openModal(<BlockNewContactModal />)}
           />
         </Container>
         <StyledHorizontalLine width="90%" />

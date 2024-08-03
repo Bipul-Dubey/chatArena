@@ -33,7 +33,7 @@ const ResponsiveContainer = styled("div")(({ width = 90 }) => ({
   maxHeight: "80vh",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "flex-start",
   backgroundColor: "#fff",
   borderRadius: "8px",
   boxSizing: "border-box",
