@@ -3,10 +3,16 @@ import {
   StyledMainChatContainer,
   StyledTopContainer,
 } from "./chat.common";
-import { Container, TextField, Typography } from "../common/common";
+import {
+  Container,
+  StyledHorizontalLine,
+  TextField,
+  Typography,
+} from "../common/common";
 import { IconButton } from "../buttons";
-import { CircleDashed, MagnifyingGlass } from "@phosphor-icons/react";
+import { CircleDashed, MagnifyingGlass, Plus } from "@phosphor-icons/react";
 import Chat from "./chat";
+import NewGroup from "./newGroupButton";
 
 const AllContacts = () => {
   return (
@@ -20,6 +26,10 @@ const AllContacts = () => {
           iconStart={<MagnifyingGlass size={24} />}
           placeholder="Search"
         />
+      </Container>
+      <NewGroup />
+      <Container center>
+        <StyledHorizontalLine width="95%" />
       </Container>
       <StyledChatContainer
         style={{

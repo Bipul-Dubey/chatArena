@@ -10,11 +10,11 @@ import {
   TextField,
   Typography,
 } from "../common/common";
-import { CaretLeft, MagnifyingGlass, X } from "@phosphor-icons/react";
+import { CaretLeft, MagnifyingGlass, Plus } from "@phosphor-icons/react";
 import { LEFT_BAR } from "@/constants/appConstant";
 import { useModal } from "../common/top.components/ModalContext";
 import { IconButton } from "../buttons";
-import { Plus } from "@phosphor-icons/react/dist/ssr";
+import ModalContainer from "../common/top.components/ModalContainer";
 import { BlockedChat } from "../chats/chat";
 
 function BlockedContact() {
@@ -48,44 +48,34 @@ function BlockedContact() {
             noshadow
             onClick={() =>
               openModal(
-                <Container
-                  style={{
-                    gap: 20,
-                    maxHeight: "100%",
-                  }}
-                >
+                <ModalContainer title="Block New Contact" scrollable>
                   <Container
-                    row
                     style={{
-                      alignItems: "center",
                       gap: 20,
+                      maxHeight: "100%",
                     }}
                   >
-                    <IconButton
-                      icon={<X size={22} />}
-                      noshadow
-                      onClick={closeModal}
-                    />
-                    <Typography type="h3">Block New Contact</Typography>
+                    <Container>
+                      <TextField
+                        iconStart={<MagnifyingGlass size={24} />}
+                        placeholder="Search"
+                      />
+                    </Container>
+                    <StyledChatContainer
+                      style={{
+                        gap: 9,
+                        margin: "17px 7px",
+                        overflowY: "auto",
+                      }}
+                    >
+                      {"123hdnsdfkjdfngkjdfgkddsnvkjnskjdnfkjdsnkj"
+                        ?.split("")
+                        ?.map((item, index) => (
+                          <BlockedChat user={item} newBlocked key={index} />
+                        ))}
+                    </StyledChatContainer>
                   </Container>
-                  <StyledHorizontalLine />
-                  <Container>
-                    <TextField
-                      iconStart={<MagnifyingGlass size={24} />}
-                      placeholder="Search"
-                    />
-                  </Container>
-                  <StyledChatContainer
-                    style={{
-                      gap: 9,
-                      margin: "17px 7px",
-                    }}
-                  >
-                    {"123hdnsdfkjdfngkjdfgkj"?.split("")?.map((item, index) => (
-                      <BlockedChat user={item} newBlocked />
-                    ))}
-                  </StyledChatContainer>
-                </Container>
+                </ModalContainer>
               )
             }
           />
@@ -99,7 +89,7 @@ function BlockedContact() {
         }}
       >
         {"123hdn"?.split("")?.map((item, index) => (
-          <BlockedChat user={item} />
+          <BlockedChat user={item} key={index} />
         ))}
       </StyledChatContainer>
     </StyledMainChatContainer>

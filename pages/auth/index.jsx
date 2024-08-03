@@ -1,3 +1,9 @@
+import {
+  StyledContainerAuth,
+  StyledContainerSub,
+  StyledContentWrapper,
+  StyledTextFieldContainer,
+} from "@/components/Authentications/AuthenticationContainers";
 import { Button } from "@/components/buttons";
 import { TextField, Typography } from "@/components/common/common";
 import {
@@ -8,83 +14,15 @@ import {
   Phone,
   User,
 } from "@phosphor-icons/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
-import styled from "styled-components";
-
-const StyledContainerAuth = styled("div")({
-  color: "#dad6d6",
-  width: "100%",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "100vh",
-  "@media (max-width: 768px)": {
-    flexDirection: "column",
-    height: "auto",
-  },
-});
-
-const StyledContainerSub = styled("div")(({ bigscreen }) => ({
-  width: "50%",
-  minHeight: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  color: "#000",
-  "@media (max-width: 1024px)": {
-    width: "70%",
-  },
-  "@media (max-width: 768px)": {
-    display: bigscreen ? "none" : "flex",
-    width: "100%",
-    backgroundImage: `url("/login_bg.jpg")`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    color: "#fff",
-    minHeight: bigscreen ? "auto" : "100vh",
-  },
-  "@media (max-width: 480px)": {
-    width: "100%",
-  },
-}));
-
-const StyledTextFieldContainer = styled("div")({
-  width: "50%",
-  display: "flex",
-  flexDirection: "column",
-  gap: 22,
-  "@media (max-width: 768px)": {
-    width: "80%",
-  },
-  "@media (max-width: 480px)": {
-    width: "90%",
-  },
-  "@media (max-width: 320px)": {
-    width: "100%",
-  },
-});
-
-const StyledContentWrapper = styled("div")({
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "inherit",
-  gap: 17,
-  padding: "10px 0px",
-  "@media (max-width: 768px)": {
-    padding: "20px 0px",
-  },
-  "@media (max-width: 480px)": {
-    padding: "10px 0px",
-  },
-});
 
 function Authentications() {
+  const router = useRouter();
+  // === constant data ===
   const iconSize = 22;
 
+  // ===  State ===
   const [payload, setPayload] = useState({
     is_new_account: false,
   });
@@ -179,7 +117,14 @@ function Authentications() {
             {payload?.is_new_account ? (
               <Button fullwidth>Sign up</Button>
             ) : (
-              <Button fullwidth>Login</Button>
+              <Button
+                fullwidth
+                onClick={() => {
+                  router.push("/dashboard");
+                }}
+              >
+                Login
+              </Button>
             )}
           </StyledTextFieldContainer>
         </StyledContentWrapper>

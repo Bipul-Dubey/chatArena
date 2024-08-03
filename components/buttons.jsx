@@ -116,8 +116,9 @@ const StyledButton = styled("button")(
 export const Button = ({
   children,
   type = "primary",
-  props,
   fullwidth = "",
+  onClick = () => {},
+  ...props
 }) => {
   const buttonBgColor = {
     primary: {
@@ -138,6 +139,8 @@ export const Button = ({
   };
   return (
     <StyledButton
+      {...props}
+      onClick={onClick}
       fullwidth={fullwidth}
       btnColor={buttonBgColor[type] || {}}
       {...props}

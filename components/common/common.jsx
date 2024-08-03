@@ -155,9 +155,12 @@ export const Typography = ({
   bold = false,
   size = "",
   center = false,
+  onClick = () => {},
+  ...props
 }) => {
   return (
     <StyledTypography
+      {...props}
       type={type}
       link={link}
       style={style}
@@ -165,6 +168,7 @@ export const Typography = ({
       bold={bold}
       size={size}
       center={center}
+      onClick={onClick}
     >
       {children}
     </StyledTypography>

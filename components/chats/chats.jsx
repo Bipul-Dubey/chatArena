@@ -41,7 +41,7 @@ const Chats = ({}) => {
         </Typography>
       </Container>
       <Container center>
-        <StyledHorizontalLine width="90%" />
+        <StyledHorizontalLine width="95%" />
       </Container>
       <StyledChatContainer
         style={{
