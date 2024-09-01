@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { faker } from "@faker-js/faker/locale/af_ZA";
 import { IconButton } from "../buttons";
+import { useState } from "react";
 
 // ==================== Container ====================
 const StyledContainer = styled("div")(({ row = false, center = false }) => ({
@@ -122,24 +123,26 @@ export const UnreadMessage = ({
 
 // ==================== Text area ====================
 const StyledTypography = styled("div")(
-  ({ type = "", link = false, color = "", bold }) => ({
-    fontSize:
-      type == "h1"
-        ? "2.125rem"
-        : type == "h2"
-        ? "1.875rem"
-        : type == "h3"
-        ? "1.5rem"
-        : type == "h4"
-        ? "1.25rem"
-        : type == "h5"
-        ? "1.125rem"
-        : type == "h6"
-        ? "1rem"
-        : "",
+  ({ type = "", link = false, color = "", bold, size, center }) => ({
+    fontSize: size
+      ? size
+      : type == "h1"
+      ? "2.125rem"
+      : type == "h2"
+      ? "1.875rem"
+      : type == "h3"
+      ? "1.5rem"
+      : type == "h4"
+      ? "1.25rem"
+      : type == "h5"
+      ? "1.125rem"
+      : type == "h6"
+      ? "1rem"
+      : "",
     color: link ? "#1c60f4" : color,
     cursor: link ? "pointer" : "default",
     fontWeight: bold ? "bold" : "",
+    textAlign: center ? "center" : "",
   })
 );
 
@@ -150,14 +153,22 @@ export const Typography = ({
   style = {},
   color = "",
   bold = false,
+  size = "",
+  center = false,
+  onClick = () => {},
+  ...props
 }) => {
   return (
     <StyledTypography
+      {...props}
       type={type}
       link={link}
       style={style}
       color={color}
       bold={bold}
+      size={size}
+      center={center}
+      onClick={onClick}
     >
       {children}
     </StyledTypography>
@@ -173,8 +184,14 @@ const StyledTextfieldContainer = styled("div")(({}) => ({
 }));
 
 const StyledTextfield = styled("input")(
-  ({ borderColor = "", isStartIcon = false, isEndIcon = false }) => ({
+  ({
+    borderColor = "",
+    isStartIcon = false,
+    isEndIcon = false,
+    height = "",
+  }) => ({
     width: "100%",
+    height: height,
     padding: 10,
     paddingLeft: isStartIcon ? "45px" : "",
     paddingRight: isEndIcon ? "45px" : "",
@@ -206,18 +223,46 @@ const StyledEndIconContainer = styled("div")(({}) => ({
   justifyContent: "center",
 }));
 
+const StyledLabel = styled("label")(({ isactive = false }) => ({
+  position: "absolute",
+  top: isactive ? "0px" : "50%",
+  left: "10px",
+  fontSize: "1rem",
+  color: "#7f7e7e",
+  transform: "translateY(-50%)",
+  transition: "all 0.5s ease",
+  PointerEvent: "none",
+  fontWeight: 600,
+}));
+
 export const TextField = ({
   borderColor = "#40C7F1",
   placeholder = "",
   onChange = () => {},
   iconStart = "",
   iconEnd = "",
+  label = "",
+  height = "",
+  type = "text",
+  ...props
 }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  // const handleFocus = () => setIsActive(true);
+  // const handleBlur = (event) => {
+  //   if (!event.target.value) {
+  //     setIsActive(false);
+  //   }
+  // };
+
   return (
     <StyledTextfieldContainer
       isStartIcon={iconStart ? true : false}
       isEndIcon={iconEnd ? true : false}
     >
+      {/* {label && isActive && (
+        <StyledLabel isactive={isActive || !!placeholder}>{label}</StyledLabel>
+      )} */}
       {iconStart ? (
         <StyledStartIconContainer>
           {<IconButton disabled icon={iconStart} noshadow />}
@@ -226,11 +271,16 @@ export const TextField = ({
         ""
       )}
       <StyledTextfield
-        placeholder={placeholder}
+        // onFocus={handleFocus}
+        // onBlur={handleBlur}
+        {...props}
+        placeholder={placeholder || label}
         onChange={onChange}
         borderColor={borderColor}
         isStartIcon={iconStart ? true : false}
         isEndIcon={iconEnd ? true : false}
+        height={height}
+        type={type}
       />
       {iconEnd ? (
         <StyledEndIconContainer>
@@ -276,5 +326,89 @@ export const Marquee = ({ children }) => {
     <MarqueeWrapper>
       <MarqueeText>{children}</MarqueeText>
     </MarqueeWrapper>
+  );
+};
+
+// ==================== MultilineText ====================
+const StyledMultilineTextContainer = styled("div")(({}) => ({
+  position: "relative",
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+}));
+
+const StyledMultilineText = styled("textarea")(
+  ({
+    borderColor = "",
+    isStartIcon = false,
+    isEndIcon = false,
+    height = "",
+  }) => ({
+    width: "100%",
+    height: height,
+    padding: 7,
+    paddingLeft: isStartIcon ? "45px" : "",
+    paddingRight: isEndIcon ? "45px" : "",
+    fontSize: "1rem",
+    borderRadius: 7,
+    backgroundColor: "#d0ecfa",
+    border: "none",
+    resize: "none",
+    "&:focus": {
+      borderColor: borderColor,
+      outline: "none",
+      borderRadius: 7,
+    },
+  })
+);
+
+export const TextArea = ({
+  borderColor = "#40C7F1",
+  placeholder = "",
+  onChange = () => {},
+  iconStart = "",
+  iconEnd = "",
+  label = "",
+  height = "",
+}) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleFocus = () => setIsActive(true);
+  const handleBlur = (event) => {
+    if (!event.target.value) {
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <StyledMultilineTextContainer
+      isStartIcon={iconStart ? true : false}
+      isEndIcon={iconEnd ? true : false}
+    >
+      {iconStart ? (
+        <StyledStartIconContainer>
+          {<IconButton disabled icon={iconStart} noshadow />}
+        </StyledStartIconContainer>
+      ) : (
+        ""
+      )}
+      <StyledMultilineText
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        placeholder={isActive ? placeholder : label}
+        onChange={onChange}
+        borderColor={borderColor}
+        isStartIcon={iconStart ? true : false}
+        isEndIcon={iconEnd ? true : false}
+        height={height}
+      />
+      {iconEnd ? (
+        <StyledEndIconContainer>
+          {<IconButton disabled icon={iconEnd} noshadow />}
+        </StyledEndIconContainer>
+      ) : (
+        ""
+      )}
+    </StyledMultilineTextContainer>
   );
 };

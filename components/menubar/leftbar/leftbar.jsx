@@ -12,6 +12,7 @@ import {
   Gear,
   Phone,
   SignOut,
+  User,
   Users,
 } from "@phosphor-icons/react";
 import styled from "styled-components";
@@ -100,6 +101,17 @@ const Leftbar = ({ activeLeftBarType = "" }) => {
             {
               name: (
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <Typography type="h5">Profile</Typography>
+                  <User size={25} />
+                </div>
+              ),
+              func: () => {
+                handleUpdateToggleLeftBar(LEFT_BAR.TYPE.CURRENT_PROFILE);
+              },
+            },
+            {
+              name: (
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <Typography type="h5">Logout</Typography>
                   <SignOut size={25} />
                 </div>
@@ -107,7 +119,7 @@ const Leftbar = ({ activeLeftBarType = "" }) => {
               func: () => {},
             },
           ]}
-          position="top"
+          position="bottom"
         >
           <Avatar />
         </Options>
